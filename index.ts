@@ -10,13 +10,16 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, "preload.ts")
         },
+        //com isso, eu consigo fazer coisas do node.js no script do front-end.
+        nodeIntegration: true,
         //allwaysOnTop
         frame: false,
         transparent: true,
         //backgroundColor: "#303030",
     })
 
-    win.loadFile('./frontend/main.html');
+    win.loadFile('./main/main.html');
+
 }
 
 app.whenReady().then(function start() {

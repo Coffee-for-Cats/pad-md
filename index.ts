@@ -3,23 +3,26 @@
 const path = require('path');
 const { app, BrowserWindow } = require('electron');
 
+//just for dev
+const electronReload = require("electron-reload");
+electronReload(__dirname, {});
+
 function createWindow() {
     const win = new BrowserWindow({
         width: 400,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, "preload.ts")
+            preload: path.join(__dirname, "preload.js"),
         },
         //com isso, eu consigo fazer coisas do node.js no script do front-end.
-        nodeIntegration: true,
+        //nodeIntegration: true,
         //allwaysOnTop
         frame: false,
-        transparent: true,
+        //transparent: true,
         //backgroundColor: "#303030",
     })
 
-    win.loadFile('./main/main.html');
-
+    win.loadFile(path.join(__dirname, "../main.html"));
 }
 
 app.whenReady().then(function start() {

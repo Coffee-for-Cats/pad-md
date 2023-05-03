@@ -8,6 +8,7 @@ window.onload = () => {
     const exampleButton = document.querySelector('#example')
     if (exampleButton) {
         exampleButton.addEventListener('click', async () => {
+            //tudo isso pra demonstrar essa linha de código:
             const hello = await ipcRenderer.invoke('returnHello2', 'Lucas');
             alert(hello);
         })

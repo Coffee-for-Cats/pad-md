@@ -1,14 +1,11 @@
-const btn = document.querySelector('#btn') || document.createElement('button');
-const filePathElement = document.querySelector('#filePath')
-
 //Typescript is scrap, clearly
-interface Window {
-    electronAPI: any;
-}
+// interface Window {
+//     electronAPI: any;
+//     apiTest: any;
+// }
 
-btn.addEventListener('click', async () => {
-    const filePath = await window.electronAPI.openFile()
-    if (filePathElement) {
-        filePathElement.textContent = filePath
-    }
-})
+// const exampleButton = document.querySelector('#example')
+// exampleButton?.addEventListener('click', async () => {
+//     const hello = await window.apiTest.returnHello('Lucas')
+//     alert(hello);
+// })

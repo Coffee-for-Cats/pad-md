@@ -1,9 +1,10 @@
 //Ponto de entrada, aqui eu posso fazer as coisas do "backend", acessar o FS, mas não consigo acessar a DOOM.
-const path = require('path');
-const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
+import path from 'path';
+import { app, BrowserWindow, ipcMain, Menu, dialog } from 'electron';
+import fs from 'fs';
 
 //just for dev
-const electronReload = require("electron-reload");
+import electronReload from "electron-reload";
 electronReload(__dirname, {});
 
 //Menu.setApplicationMenu(null)
@@ -22,18 +23,12 @@ function createWindow() {
         backgroundColor: "#151515",
     })
 
-    win.loadFile(path.join(__dirname, "../main.html"));
-}
-
-async function handleFileOpen() {
-    const { canceled, filePaths } = await dialog.showOpenDialog()
-
-    if (canceled) {} else return filePaths[0]
+    win.loadFile(path.join(__dirname, "../src/main.html"));
 }
 
 app.on("ready", () => {
     createWindow()
-    ipcMain.handle('openFile', handleFileOpen);
+    ipcMain.handle('returnHello2', (_:any, arg1: string) => `Hello ${arg1}`)
 
     macOpenAgain()
 })

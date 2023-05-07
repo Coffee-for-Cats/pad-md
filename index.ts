@@ -28,7 +28,7 @@ function createWindow() {
 
 app.on("ready", () => {
     createWindow()
-    ipcMain.handle('closeApp', ()=> { app.exit() })
+    ipcMain.on('closeApp', ()=> { app.exit() })
 
     macOpenAgain()
 })

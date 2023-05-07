@@ -28,7 +28,8 @@ function createWindow() {
 
 app.on("ready", () => {
     createWindow()
-    ipcMain.on('closeApp', ()=> { app.exit() })
+    ipcMain.on('closeApp', () => { app.exit() })
+    ipcMain.on('openFile', (_:any, filePath) => { console.log(filePath);})
 
     macOpenAgain()
 })

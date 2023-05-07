@@ -13,7 +13,13 @@ window.onload = function dropHandler() {
         event.preventDefault();
         event.stopPropagation();
     })
-    document.addEventListener('drop', (_e) => {
-        alert("File Dropped!")
+    document.addEventListener('drop', (e) => {
+        alert("File Dropped!");
+        if (e.dataTransfer) {
+            console.log(e.dataTransfer.files[0].path)
+            ipcRenderer.send('openFile', e.dataTransfer.files[0].path)
+        } else {
+            alert("You dropped nothing???");
+        }
     })
 }

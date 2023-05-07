@@ -1,11 +1,8 @@
-//Typescript is scrap, clearly
-// interface Window {
-//     electronAPI: any;
-//     apiTest: any;
-// }
+interface Window {
+    App: any;
+}
 
-// const exampleButton = document.querySelector('#example')
-// exampleButton?.addEventListener('click', async () => {
-//     const hello = await window.apiTest.returnHello('Lucas')
-//     alert(hello);
-// })
+function closeApp() {
+    //alert("Funcionou o Botão porra");
+    window.App.closeApp();
+}

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "start": "npm run build && electron ./dist/index.js",
+    "start": "tsc && electron ./dist/index.js",
     "dev": "concurrently \"tsc -w\" \"electron ./dist/index.js\""
   },
   "author": "Lucas Schwalm Silva",

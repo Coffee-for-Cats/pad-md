@@ -13,11 +13,29 @@ main {
     width: 100%;
 }
 
-.titlebar {
-    height: 2rem;
+.title-bar > * {
+    -webkit-app-region: no-drag;
+}
+.title-bar {
     user-select: none;
     -webkit-user-select: none;
     -webkit-app-region: drag;
+    
     background-color: aliceblue;
     border-radius: .6rem .6rem 0 0;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.button-close {
+    -webkit-app-region: no-drag;
+    z-index: 100;
+
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .2rem;
+    border: none;
+    background: none;
 }

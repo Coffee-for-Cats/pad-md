@@ -1,16 +1,19 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
-// contextBridge.exposeInMainWorld('apiTest', {
-//     returnHello: (name: string) => { return ipcRenderer.invoke('returnHello2', name) }
-// })
+contextBridge.exposeInMainWorld('App', {
+    closeApp: () => {
+        //alert("Chegou no preload")
+        ipcRenderer.invoke('closeApp');
+    }
+})
 
-window.onload = () => {
-    const exampleButton = document.querySelector('#example')
-    if (exampleButton) {
-        exampleButton.addEventListener('click', async () => {
-            //tudo isso pra demonstrar essa linha de código:
-            const hello = await ipcRenderer.invoke('returnHello2', 'Lucas');
-            alert(hello);
-        })
-    } else alert("Erro, botão não encontrado")
+window.onload = function dropHandler() {
+    //Eu não sei por que, mas eu preciso usar isso para o de baixo funcionar.
+    document.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+    })
+    document.addEventListener('drop', (_e) => {
+        alert("File Dropped!")
+    })
 }

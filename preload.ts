@@ -14,12 +14,8 @@ window.onload = function dropHandler() {
         event.stopPropagation();
     })
     document.addEventListener('drop', (e) => {
-        alert("File Dropped!");
         if (e.dataTransfer) {
-            console.log(e.dataTransfer.files[0].path)
             ipcRenderer.send('openFile', e.dataTransfer.files[0].path)
-        } else {
-            alert("You dropped nothing???");
         }
     })
 }

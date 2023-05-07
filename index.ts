@@ -3,10 +3,6 @@ import path from 'path';
 import { app, BrowserWindow, ipcMain, Menu, dialog } from 'electron';
 import fs from 'fs';
 
-//just for dev
-import electronReload from "electron-reload";
-electronReload(__dirname, {});
-
 //Menu.setApplicationMenu(null)
 
 function createWindow() {
@@ -28,11 +24,19 @@ function createWindow() {
 
 app.on("ready", () => {
     createWindow()
-    ipcMain.on('closeApp', () => { app.exit() })
-    ipcMain.on('openFile', (_:any, filePath) => { console.log(filePath);})
+    ipcMain.on('closeApp', closeApp)
+    ipcMain.on('openFile', openFile)
 
     macOpenAgain()
 })
+
+function closeApp() {
+    app.exit();
+}
+
+function openFile(_: any, filePath: any) {
+    console.log(filePath);
+}
 
 //coisa de gente rica (macOS)
 app.on('window-all-closed', () => {

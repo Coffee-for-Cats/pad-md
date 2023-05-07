@@ -3,7 +3,7 @@ import { contextBridge, ipcRenderer } from 'electron';
 contextBridge.exposeInMainWorld('App', {
     closeApp: () => {
         //alert("Chegou no preload")
-        ipcRenderer.invoke('closeApp');
+        ipcRenderer.send('closeApp');
     }
 })
 

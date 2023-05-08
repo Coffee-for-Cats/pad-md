@@ -1,7 +1,7 @@
 //Ponto de entrada, aqui eu posso fazer as coisas do "backend", acessar o FS, mas não consigo acessar a DOOM.
-import path from 'path';
-import { app, BrowserWindow, ipcMain, Menu, dialog } from 'electron';
-import fs from 'fs';
+const path = require('path');
+const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
+const fs = require('fs');
 
 //Menu.setApplicationMenu(null)
 
@@ -35,7 +35,7 @@ function closeAppHandler() {
 }
 
 async function openFileHandler(e: any, filePath: any) {
-    fs.readFile(filePath, 'utf8', async (err, data) => {
+    fs.readFile(filePath, 'utf8', async (err: any, data: any) => {
         if (err) { console.log(err) }
         e.reply('fileContent', data)
     })

@@ -4,35 +4,45 @@
     box-sizing: border-box;
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: ghostwhite;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 main {
-    border-radius: .6rem;
-    background: #303030;
-    height: 100vh;
-    width: 100%;
+    margin: 1rem;
+    max-width: 36rem;
 }
 
-.title-bar > * {
-    -webkit-app-region: no-drag;
-}
-.title-bar {
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-app-region: drag;
-    
+.title-bar {    
     background-color: aliceblue;
-    border-radius: .6rem .6rem 0 0;
+    /*border-radius: .6rem .6rem 0 0;*/
     height: 2rem;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+}
+.title-bar > * {
+    -webkit-app-region: no-drag;
+}
+
+button {
+    cursor: pointer;
+    color: black
 }
 
 .button-close {
-    -webkit-app-region: no-drag;
-    z-index: 100;
-
     width: 1.5rem;
     height: 1.5rem;
     margin-right: .2rem;

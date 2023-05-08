@@ -24,18 +24,21 @@ function createWindow() {
 
 app.on("ready", () => {
     createWindow()
-    ipcMain.on('closeApp', closeApp)
-    ipcMain.on('openFile', openFile)
+    ipcMain.on('closeApp', closeAppHandler)
+    ipcMain.on('openFile', openFileHandler)
 
     macOpenAgain()
 })
 
-function closeApp() {
+function closeAppHandler() {
     app.exit();
 }
 
-function openFile(_: any, filePath: any) {
-    console.log(filePath);
+async function openFileHandler(e: any, filePath: any) {
+    fs.readFile(filePath, 'utf8', async (err, data) => {
+        if (err) { console.log(err) }
+        e.reply('fileContent', data)
+    })
 }
 
 //coisa de gente rica (macOS)

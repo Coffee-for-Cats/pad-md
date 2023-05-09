@@ -27,7 +27,7 @@ function dropHandler() {
     })
 }
 
-//qunado o arquivo já foi lido, o index me retorna data.
+//quando o arquivo já foi lido, o index me retorna data.
 ipcRenderer.on('fileContent', async function renderMD (_e: any, data) {
     const contentPlacer = document.querySelector('#content-placer')
     if (contentPlacer) {

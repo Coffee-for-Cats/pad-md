@@ -11,10 +11,11 @@
 </head>
 <body>
     <header class="title-bar">
+        <button type="button" class="button-save" onclick="saveFile()">save</button>
         <button type="button" class="button-close" onclick="closeApp()">x</button>
     </header>
     <main>
-        <span id="content-placer"></span>
+        <span id="content-placer" contenteditable></span>
     </main>
 </body>
 <script src="../dist/src/renderer.js"></script>

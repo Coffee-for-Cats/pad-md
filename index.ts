@@ -26,6 +26,7 @@ app.on("ready", () => {
     createWindow()
     ipcMain.on('closeApp', closeAppHandler)
     ipcMain.on('openFile', openFileHandler)
+    ipcMain.handle('saveFile', saveFileHandler)
 
     macOpenAgain()
 })
@@ -39,6 +40,10 @@ async function openFileHandler(e: any, filePath: any) {
         if (err) { console.log(err) }
         e.reply('fileContent', data)
     })
+}
+
+async function saveFileHandler(_e: any, filePath: string, fileContent: string) {
+    console.log(filePath + fileContent);
 }
 
 //coisa de gente rica (macOS)

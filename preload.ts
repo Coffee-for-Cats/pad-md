@@ -1,9 +1,12 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
+var filePath: string;
+
 contextBridge.exposeInMainWorld('App', {
-    closeApp: () => {
-        //alert("Chegou no preload")
-        ipcRenderer.send('closeApp');
+    closeApp: () => { ipcRenderer.send('closeApp'); },
+    saveFile: (fileContent: string) => {
+        alert(fileContent);
+        ipcRenderer.invoke('saveFile', filePath, fileContent);
     }
 })
 
@@ -21,8 +24,9 @@ function dropHandler() {
     //quando alguém "dropa" um arquivo na tela...
     document.addEventListener('drop', (e) => {
         if (e.dataTransfer) {
+            filePath = e.dataTransfer.files[0].path;
             //eu envio para o Main arbir ele.
-            ipcRenderer.send('openFile', e.dataTransfer.files[0].path)
+            ipcRenderer.send('openFile', filePath)
         }
     })
 }

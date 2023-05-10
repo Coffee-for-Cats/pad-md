@@ -1,7 +1,7 @@
 //Ponto de entrada, aqui eu posso fazer as coisas do "backend", acessar o FS, mas não consigo acessar a DOOM.
 const path = require('path');
 const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
-const fs = require('fs');
+const fs = require('fs/promises');
 
 //Menu.setApplicationMenu(null)
 
@@ -25,7 +25,7 @@ function createWindow() {
 app.on("ready", () => {
     createWindow()
     ipcMain.on('closeApp', closeAppHandler)
-    ipcMain.on('openFile', openFileHandler)
+    ipcMain.handle('openFile', openFileHandler)
     ipcMain.handle('saveFile', saveFileHandler)
 
     macOpenAgain()
@@ -35,11 +35,9 @@ function closeAppHandler() {
     app.exit();
 }
 
-async function openFileHandler(e: any, filePath: any) {
-    fs.readFile(filePath, 'utf8', async (err: any, data: any) => {
-        if (err) { console.log(err) }
-        e.reply('fileContent', data)
-    })
+async function openFileHandler(e: any, filePath: string) {
+    const data = await fs.readFile(filePath, 'utf8')
+    return data
 }
 
 async function saveFileHandler(_e: any, filePath: string, fileContent: string) {

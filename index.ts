@@ -42,6 +42,8 @@ async function openFileHandler(e: any, filePath: string) {
 
 async function saveFileHandler(_e: any, filePath: string, fileContent: string) {
     console.log(filePath + fileContent);
+
+    fs.writeFile(filePath, fileContent);
 }
 
 //coisa de gente rica (macOS)

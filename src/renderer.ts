@@ -13,7 +13,6 @@ function closeApp() {
 function saveFile() {
 
     const paragraphsArray = Array.from(documentParagraphs);
-    alert(paragraphsArray)
     
     let fileContent = '';
 

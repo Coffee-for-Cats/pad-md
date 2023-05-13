@@ -26,6 +26,12 @@ p {
     max-width: 36rem;
 
     overflow-wrap: break-word;
+
+    outline: none;
+}
+
+p:hover {
+    background-color: #222222;
 }
 
 .title-bar {    

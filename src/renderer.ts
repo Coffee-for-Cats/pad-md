@@ -1,6 +1,6 @@
 const contentPlacer = document.querySelector('#content-placer') || document.createElement('a');
 
-var fileContent: string;
+var documentParagraphs: HTMLCollection;
 var filePath: string;
 
 interface Window {
@@ -13,11 +13,19 @@ function closeApp() {
 }
 //html button
 function saveFile() {
+
+    const paragraphsArray = Array.from(documentParagraphs);
+    
+    let fileContent = '';
+    for (const p of paragraphsArray) {
+        fileContent += p.textContent;
+    }
+
     window.App.saveFile(filePath, fileContent);
 }
 
 window.addEventListener('input', () => {
-    fileContent = contentPlacer.textContent || ''
+    documentParagraphs = contentPlacer.children
 })
 
 document.addEventListener('dragover', (event) => {

@@ -15,24 +15,31 @@ body {
     flex-direction: column;
 }
 
-main {
-    width: 100vw;
-    margin: 1rem 0;
-}
-
 p {
     margin: .2rem 0;
     padding: .2rem 1rem;
-    width: 100%;
-    max-width: 36rem;
-
+    width: 100vw;
     overflow-wrap: break-word;
-
-    outline: none;
 }
 
 p:hover {
     background-color: #222222;
+}
+pre {
+    max-width: 36rem;
+    width: 100vw;
+    outline: none;
+    overflow-wrap: break-word;
+}
+
+button {
+    cursor: pointer;
+    color: black;
+    border: none;
+    background: none;
+
+    padding: .2rem;
+    margin: .4rem;
 }
 
 .title-bar {    
@@ -50,14 +57,4 @@ p:hover {
 }
 .title-bar > * {
     -webkit-app-region: no-drag;
-}
-
-button {
-    cursor: pointer;
-    color: black;
-    border: none;
-    background: none;
-
-    padding: .2rem;
-    margin: .2rem;
 }

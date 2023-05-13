@@ -1,4 +1,3 @@
-var documentParagraphs: any;
 var filePath: string;
 
 interface Window {
@@ -11,24 +10,21 @@ function closeApp() {
 }
 //html button
 function saveFile() {
-
-    const paragraphsArray = Array.from(documentParagraphs);
+    const documentParagraphs = document.querySelector("#content-placer") || document.createElement('div');
+    const paragraphsArray = Array.from(documentParagraphs.children);
     
     let fileContent = '';
 
-    paragraphsArray.forEach((p:any) => {
+    paragraphsArray.forEach((p: any) => {
         fileContent += p.textContent;
+        //there will be a last char left in the string.
+        fileContent += '\n'
     })
+    //remove the last \n character.
+    fileContent = fileContent.slice(0, -1)
 
     window.App.saveFile(filePath, fileContent);
 }
-
-window.addEventListener('input', () => {
-    const contentPlacer = document.querySelector('#content-placer') || document.createElement('a');
-
-    console.log(contentPlacer)
-    documentParagraphs = contentPlacer.children
-})
 
 document.addEventListener('dragover', (event) => {
     event.preventDefault();
@@ -40,18 +36,22 @@ async function openFile(e: any) {
     if (e.dataTransfer) {
         filePath = e.dataTransfer.files[0].path;
         const fileContent = await window.App.openFile(filePath);
+        const textContents = fileContent.split('\n');
 
-        let newParagraphs: HTMLElement = document.createElement('span');
-        newParagraphs.id = "content-placer"
-        for (const line of fileContent.split('\n')) {
+        let newParagraphs = document.createElement('div');
+        newParagraphs.id = "content-placer";
+        newParagraphs.contentEditable = "true";
+        
+        for (const line of textContents) {
             //alert(line);
             const p = document.createElement('p');
-            p.contentEditable = "true"
+            //p.contentEditable = "true"
             p.textContent = line;
             newParagraphs.appendChild(p);
         }
 
-        const contentPlacer = document.querySelector('#content-placer') || document.createElement('a');
+        console.log(newParagraphs);
+        const contentPlacer = document.querySelector('#content-placer') || document.createElement('div');
         contentPlacer.replaceWith(newParagraphs);
     }
 }

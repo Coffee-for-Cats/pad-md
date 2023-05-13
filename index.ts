@@ -37,6 +37,7 @@ function closeAppHandler() {
 
 async function openFileHandler(e: any, filePath: string) {
     const data = await fs.readFile(filePath, 'utf8')
+
     return data
 }
 

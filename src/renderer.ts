@@ -38,12 +38,15 @@ async function openFile(e: any) {
     if (e.dataTransfer) {
         filePath = e.dataTransfer.files[0].path;
         const fileContent = await window.App.openFile(filePath);
+
         
+        let newParagraphs: Array<HTMLElement> = [];
         for (const line of fileContent.split('\n')) {
             const p = document.createElement('p');
             p.innerHTML = line;
-            contentPlacer.appendChild(p);
+            newParagraphs.push(p);
         }
-        //contentPlacer.textContent = fileContent;
+
+        contentPlacer.replaceChildren(...newParagraphs);
     }
 }

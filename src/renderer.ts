@@ -30,6 +30,12 @@ async function openFile(e: any) {
     if (e.dataTransfer) {
         filePath = e.dataTransfer.files[0].path;
         const fileContent = await window.App.openFile(filePath);
-        contentPlacer.textContent = fileContent;
+        
+        for (const line of fileContent.split('\n')) {
+            const p = document.createElement('p');
+            p.innerHTML = line;
+            contentPlacer.appendChild(p);
+        }
+        //contentPlacer.textContent = fileContent;
     }
 }

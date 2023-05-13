@@ -1,6 +1,4 @@
-const contentPlacer = document.querySelector('#content-placer') || document.createElement('a');
-
-var documentParagraphs: HTMLCollection;
+var documentParagraphs: any;
 var filePath: string;
 
 interface Window {
@@ -15,16 +13,21 @@ function closeApp() {
 function saveFile() {
 
     const paragraphsArray = Array.from(documentParagraphs);
+    alert(paragraphsArray)
     
     let fileContent = '';
-    for (const p of paragraphsArray) {
+
+    paragraphsArray.forEach((p:any) => {
         fileContent += p.textContent;
-    }
+    })
 
     window.App.saveFile(filePath, fileContent);
 }
 
 window.addEventListener('input', () => {
+    const contentPlacer = document.querySelector('#content-placer') || document.createElement('a');
+
+    console.log(contentPlacer)
     documentParagraphs = contentPlacer.children
 })
 
@@ -39,14 +42,17 @@ async function openFile(e: any) {
         filePath = e.dataTransfer.files[0].path;
         const fileContent = await window.App.openFile(filePath);
 
-        
-        let newParagraphs: Array<HTMLElement> = [];
+        let newParagraphs: HTMLElement = document.createElement('span');
+        newParagraphs.id = "content-placer"
         for (const line of fileContent.split('\n')) {
+            //alert(line);
             const p = document.createElement('p');
-            p.innerHTML = line;
-            newParagraphs.push(p);
+            p.contentEditable = "true"
+            p.textContent = line;
+            newParagraphs.appendChild(p);
         }
 
-        contentPlacer.replaceChildren(...newParagraphs);
+        const contentPlacer = document.querySelector('#content-placer') || document.createElement('a');
+        contentPlacer.replaceWith(newParagraphs);
     }
 }

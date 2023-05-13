@@ -25,11 +25,13 @@ p {
 p:hover {
     background-color: #222222;
 }
+
 pre {
     max-width: 36rem;
     width: 100vw;
     outline: none;
     overflow-wrap: break-word;
+    white-space: pre-wrap
 }
 
 button {

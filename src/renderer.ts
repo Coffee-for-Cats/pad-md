@@ -8,6 +8,7 @@ interface Window {
 function closeApp() {
     window.App.closeApp();
 }
+
 //html button
 function saveFile() {
     const documentParagraphs = document.querySelector("#content-placer") || document.createElement('div');
@@ -26,10 +27,12 @@ function saveFile() {
     window.App.saveFile(filePath, fileContent);
 }
 
+//drop file
 document.addEventListener('dragover', (event) => {
     event.preventDefault();
     event.stopPropagation();
 })
+
 document.addEventListener('drop', (e) => openFile(e))
 
 async function openFile(e: any) {
@@ -38,14 +41,12 @@ async function openFile(e: any) {
         const fileContent = await window.App.openFile(filePath);
         const textContents = fileContent.split('\n');
 
-        let newParagraphs = document.createElement('div');
+        let newParagraphs = document.createElement('pre');
         newParagraphs.id = "content-placer";
         newParagraphs.contentEditable = "true";
         
         for (const line of textContents) {
-            //alert(line);
             const p = document.createElement('p');
-            //p.contentEditable = "true"
             p.textContent = line;
             newParagraphs.appendChild(p);
         }

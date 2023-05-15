@@ -27,6 +27,13 @@ function saveFile() {
     window.App.saveFile(filePath, fileContent);
 }
 
+document.addEventListener('input', (e: any) => {
+    //pasting i have a problem
+    if (e) {
+        console.log(e);
+    }
+})
+
 //drop file
 document.addEventListener('dragover', (event) => {
     event.preventDefault();

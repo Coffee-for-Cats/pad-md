@@ -16,6 +16,7 @@ body {
 }
 
 main {
+    background-color: #151515;
     width: 100vw;
     height: 100vh;
     overflow-y: scroll;

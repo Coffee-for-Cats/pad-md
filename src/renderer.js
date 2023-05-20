@@ -7,16 +7,10 @@ function closeApp() {
 //html button
 function saveFile() {
     //Na teoria são textos
-    const paragraphsArray = Array.from(document.querySelector("#content-placer").children);
-    let fileContent = '';
+    const contentPlacer = document.querySelector("#content-placer")
+    let fileContent = contentPlacer.textContent;
 
-    paragraphsArray.forEach((textNode) => {
-        fileContent += textNode
-        //there will be a last char left in the string.
-        fileContent += '\n'
-    })
-    //remove the last \n character.
-    fileContent = fileContent.slice(0, -1)
+    alert(fileContent);
 
     window.App.saveFile(filePath, fileContent);
 }

@@ -1,13 +1,3 @@
-p {
-    margin: .2rem 0;
-    padding: .2rem 1rem;
-    white-space: pre-wrap;
-}
-
-p:hover {
-    background-color: #222222;
-}
-
 h1 {
     margin: .2rem 0;
     padding: .2rem 1rem;

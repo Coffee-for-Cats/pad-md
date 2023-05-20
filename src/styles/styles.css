@@ -24,8 +24,11 @@ main {
 
 pre {
     max-width: 100vw;
+    padding: 1.2rem;
     outline: none;
+
     overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .title-bar {

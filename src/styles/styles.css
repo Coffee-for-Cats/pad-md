@@ -4,7 +4,7 @@
     box-sizing: border-box;
 
     font-family: 'Segoe UI', Verdana, sans-serif;
-    color: ghostwhite;
+    color: #ccc;
 }
 
 body {
@@ -33,7 +33,7 @@ pre {
 }
 
 .title-bar {
-    background-color: #cce;
+    background-color: #bbe;
     height: 2rem;
     width: 100vw;
     display: flex;

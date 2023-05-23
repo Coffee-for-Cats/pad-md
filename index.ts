@@ -12,8 +12,6 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, "preload.js"),
         },
-        //nodeIntegration: true,
-        //allwaysOnTop
         frame: false,
 
         backgroundColor: "#151515",

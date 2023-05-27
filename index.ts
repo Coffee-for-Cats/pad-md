@@ -43,7 +43,7 @@ async function saveFileHandler(_e: any, filePath: string, fileContent: string) {
     fs.writeFile(filePath, fileContent);
 }
 
-//coisa de gente rica (macOS)
+//macOS
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
 })

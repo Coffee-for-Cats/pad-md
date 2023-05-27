@@ -1,6 +1,31 @@
-let contentPlacer = document.querySelector("#content-placer")
-var filePath;
+let contentPlacer = document.querySelector("#content-placer");
 
+const pad = {
+    filePath: "",
+    rawText: "",
+    editMode: true,
+}
+
+function render() {
+    
+    let newParagraphs = document.createElement('pre');
+    newParagraphs.id = "content-placer";
+
+    if (pad.editMode) {
+        console.log('editable');
+        newParagraphs.contentEditable = "plaintext-only";
+        newParagraphs.textContent = pad.rawText;
+    } else {
+        newParagraphs.textContent = pad.rawText;
+    }
+
+    contentPlacer.replaceWith(newParagraphs);
+
+    //do this every time I replace the element to keep it synced!
+    contentPlacer = document.querySelector("#content-placer");
+}
+
+//html button
 function closeApp() {
     window.App.closeApp();
 }
@@ -12,26 +37,29 @@ function saveFile() {
     window.App.saveFile(filePath, fileContent);
 }
 
+//prevent default drag over effects
 document.addEventListener('dragover', (event) => {
     event.preventDefault();
     event.stopPropagation();
 })
 
+//open a file when drag to screen
 document.addEventListener('drop', async function openFile(e) {
-    //gets the filepath from the event (this event is mod by electron)
     filePath = e.dataTransfer.files[0].path;
-
-    //updates the content placer variable.
-    contentPlacer = document.querySelector("#content-placer");
     const fileContent = await window.App.openFile(filePath);
-
-    //Creates and appends to a new element
-    let newParagraphs = document.createElement('pre');
-    newParagraphs.id = "content-placer";
-    newParagraphs.contentEditable = "plaintext-only";
-
-    newParagraphs.textContent = fileContent;
-
-    //uses replaceWith to make the transition smoother
-    contentPlacer.replaceWith(newParagraphs);
+    
+    pad.rawText = fileContent;
+    pad.editMode = true;
+    render();
 })
+
+//html buttons
+//changes the editMode and render the text to screen
+function editButton() {
+    pad.editMode = true;
+    render()
+}
+function viewButton() {
+    pad.editMode = false;
+    render()
+}

@@ -34,6 +34,7 @@ pre {
 
 .title-bar {
     background-color: #bbe;
+    color: black;
     height: 2rem;
     width: 100vw;
     display: flex;
@@ -47,11 +48,12 @@ pre {
 
 .title-bar>* {
     -webkit-app-region: no-drag;
+    color: inherit;
 }
 
 button {
     cursor: pointer;
-    color: black;
+    color: inherit;
     border: none;
     background: none;
 

@@ -8,18 +8,27 @@ const pad = {
 
 function render() {
     
-    let newParagraphs = document.createElement('pre');
-    newParagraphs.id = "content-placer";
+    let displayContent = document.createElement('pre');
+    displayContent.id = "content-placer";
 
     if (pad.editMode) {
-        console.log('editable');
-        newParagraphs.contentEditable = "plaintext-only";
-        newParagraphs.textContent = pad.rawText;
+        displayContent.contentEditable = "plaintext-only";
+        displayContent.textContent = pad.rawText;
     } else {
-        newParagraphs.textContent = pad.rawText;
+        //keep the rawText up to date!
+        pad.rawText = contentPlacer.textContent;
+
+        const lines =  pad.rawText.split('\n');
+        lines.forEach(line => {
+            if (line[0] == '#') {
+                displayContent.innerHTML += `<h1>${line}</h1>`
+            } else {
+                displayContent.innerHTML += `<p>${line}</p>`;
+            }
+        })
     }
 
-    contentPlacer.replaceWith(newParagraphs);
+    contentPlacer.replaceWith(displayContent);
 
     //do this every time I replace the element to keep it synced!
     contentPlacer = document.querySelector("#content-placer");
@@ -34,7 +43,7 @@ function closeApp() {
 function saveFile() {
     let fileContent = contentPlacer.textContent;
 
-    window.App.saveFile(filePath, fileContent);
+    window.App.saveFile(pad.filePath, fileContent);
 }
 
 //prevent default drag over effects
@@ -45,8 +54,8 @@ document.addEventListener('dragover', (event) => {
 
 //open a file when drag to screen
 document.addEventListener('drop', async function openFile(e) {
-    filePath = e.dataTransfer.files[0].path;
-    const fileContent = await window.App.openFile(filePath);
+    pad.filePath = e.dataTransfer.files[0].path;
+    const fileContent = await window.App.openFile(pad.filePath);
     
     pad.rawText = fileContent;
     pad.editMode = true;

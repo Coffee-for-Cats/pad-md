@@ -12,40 +12,37 @@ function render() {
     let displayContent = document.createElement('pre');
     displayContent.id = "content-placer";
 
-    console.log(pad.editMode)
-
     if (pad.editMode) {
-        //console.log("editing!")
         displayContent.contentEditable = "plaintext-only";
         displayContent.textContent = pad.rawText;
     } else if (pad.editMode == false) {
-        //console.log("viewing!");
         //keep the rawText up to date!
         pad.rawText = contentPlacer.textContent;
 
         const lines =  pad.rawText.split('\n');
         lines.forEach(line => {
-            console.log(line);
             //the type of the block is defined by the first char in the line.
             const blockType = line[0];
 
-            if (blockType in Object.keys(blockElements)) {
+            if (Object.keys(blockElements).includes(blockType)) {
                 //if the type exists, call the function from md-elements.
                 displayContent.appendChild(blockElements[blockType](line))
-                //console.log(blockElements[blockType](lines))
+                console.log(blockElements[blockType](line))
             } else {
-                //default paragraph formating
-                displayContent.textContent += line;
+                const p = document.createElement('p');
+                p.textContent = line;
+                displayContent.appendChild(p);
+                console.log(p)
             }
             //add a linebreak to the end
-            displayContent.textContent += '\n';
+            //displayContent.textContent += '\n';
         })
+        console.log(displayContent);
     }
 
     
     contentPlacer.replaceWith(displayContent);
     contentPlacer = document.getElementById('content-placer');
-    //console.log(contentPlacer);
 }
 
 //html button

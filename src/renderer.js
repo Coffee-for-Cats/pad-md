@@ -1,6 +1,7 @@
 let contentPlacer = document.querySelector("#content-placer");
 
 const pad = {
+    //contentPlacer: document.querySelector("#content-placer"),
     filePath: "",
     rawText: "",
     editMode: true,
@@ -11,27 +12,40 @@ function render() {
     let displayContent = document.createElement('pre');
     displayContent.id = "content-placer";
 
+    console.log(pad.editMode)
+
     if (pad.editMode) {
+        //console.log("editing!")
         displayContent.contentEditable = "plaintext-only";
         displayContent.textContent = pad.rawText;
-    } else {
+    } else if (pad.editMode == false) {
+        //console.log("viewing!");
         //keep the rawText up to date!
         pad.rawText = contentPlacer.textContent;
 
         const lines =  pad.rawText.split('\n');
         lines.forEach(line => {
-            if (line[0] == '#') {
-                displayContent.innerHTML += `<h1>${line}</h1>`
+            console.log(line);
+            //the type of the block is defined by the first char in the line.
+            const blockType = line[0];
+
+            if (blockType in Object.keys(blockElements)) {
+                //if the type exists, call the function from md-elements.
+                displayContent.appendChild(blockElements[blockType](line))
+                //console.log(blockElements[blockType](lines))
             } else {
-                displayContent.innerHTML += `<p>${line}</p>`;
+                //default paragraph formating
+                displayContent.textContent += line;
             }
+            //add a linebreak to the end
+            displayContent.textContent += '\n';
         })
     }
 
+    
     contentPlacer.replaceWith(displayContent);
-
-    //do this every time I replace the element to keep it synced!
-    contentPlacer = document.querySelector("#content-placer");
+    contentPlacer = document.getElementById('content-placer');
+    //console.log(contentPlacer);
 }
 
 //html button

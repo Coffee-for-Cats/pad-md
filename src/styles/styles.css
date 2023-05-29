@@ -60,3 +60,11 @@ button {
     padding: .2rem;
     margin: .4rem;
 }
+
+.activeBoldButton {
+    font-weight: bold;
+}
+
+.deactiveBoldButton {
+    font-weight: normal;
+}

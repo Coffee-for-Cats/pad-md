@@ -15,6 +15,10 @@ function render() {
     if (pad.editMode) {
         displayContent.contentEditable = "plaintext-only";
         displayContent.textContent = pad.rawText;
+
+        document.getElementById('buttonEdit').className = "activeBoldButton";
+        document.getElementById('buttonView').className = "deactiveBoldButton";
+
     } else if (pad.editMode == false) {
         //keep the rawText up to date!
         pad.rawText = contentPlacer.textContent;
@@ -27,20 +31,17 @@ function render() {
             if (Object.keys(blockElements).includes(blockType)) {
                 //if the type exists, call the function from md-elements.
                 displayContent.appendChild(blockElements[blockType](line))
-                console.log(blockElements[blockType](line))
             } else {
                 const p = document.createElement('p');
                 p.textContent = line;
                 displayContent.appendChild(p);
-                console.log(p)
             }
-            //add a linebreak to the end
-            //displayContent.textContent += '\n';
         })
-        console.log(displayContent);
+
+        document.getElementById('buttonEdit').className = "deactiveBoldButton";
+        document.getElementById('buttonView').className = "activeBoldButton";
     }
 
-    
     contentPlacer.replaceWith(displayContent);
     contentPlacer = document.getElementById('content-placer');
 }
@@ -69,7 +70,7 @@ document.addEventListener('drop', async function openFile(e) {
     const fileContent = await window.App.openFile(pad.filePath);
     
     pad.rawText = fileContent;
-    pad.editMode = true;
+    //pad.editMode = true;
     render();
 })
 

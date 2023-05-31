@@ -31,7 +31,7 @@ function render() {
     } else if (pad.editMode == false) {
         
         //keep the rawText up to date!
-        let editing = document.getElementsByClassName('editing')[0];
+        let editing = document.querySelector('.editing');
 
         if (editing) {
             pad.setRawText(editing.textContent);

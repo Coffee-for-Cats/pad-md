@@ -3,8 +3,16 @@ let contentPlacer = document.querySelector("#content-placer");
 const pad = {
     //contentPlacer: document.querySelector("#content-placer"),
     filePath: "",
-    rawText: "",
+    _rawText: "",
     editMode: true,
+
+    getRawText: () => {
+        return this._rawText
+    },
+
+    setRawText: (rawText) => {
+        this._rawText = rawText;
+    }
 }
 
 function render() {
@@ -14,16 +22,16 @@ function render() {
 
     if (pad.editMode) {
         displayContent.contentEditable = "plaintext-only";
-        displayContent.textContent = pad.rawText;
+        displayContent.textContent = pad.getRawText();
 
         document.getElementById('buttonEdit').className = "activeBoldButton";
         document.getElementById('buttonView').className = "deactiveBoldButton";
 
     } else if (pad.editMode == false) {
         //keep the rawText up to date!
-        pad.rawText = contentPlacer.textContent;
+        pad.setRawText(contentPlacer.textContent);
 
-        const lines =  pad.rawText.split('\n');
+        const lines =  pad.getRawText().split('\n');
         lines.forEach(line => {
             //the type of the block is defined by the first char in the line.
             const blockType = line[0];
@@ -69,8 +77,7 @@ document.addEventListener('drop', async function openFile(e) {
     pad.filePath = e.dataTransfer.files[0].path;
     const fileContent = await window.App.openFile(pad.filePath);
     
-    pad.rawText = fileContent;
-    //pad.editMode = true;
+    pad.setRawText(fileContent);
     render();
 })
 

@@ -1,17 +1,16 @@
 let contentPlacer = document.querySelector("#content-placer");
 
 const pad = {
-    //contentPlacer: document.querySelector("#content-placer"),
     filePath: "",
     _rawText: "",
     editMode: true,
 
     getRawText: () => {
-        return this._rawText
+        return pad._rawText
     },
 
     setRawText: (rawText) => {
-        this._rawText = rawText;
+        pad._rawText = rawText;
     }
 }
 
@@ -23,13 +22,21 @@ function render() {
     if (pad.editMode) {
         displayContent.contentEditable = "plaintext-only";
         displayContent.textContent = pad.getRawText();
+        displayContent.className += 'editing';
 
         document.getElementById('buttonEdit').className = "activeBoldButton";
         document.getElementById('buttonView').className = "deactiveBoldButton";
 
+    // if I am entering the view mode
     } else if (pad.editMode == false) {
+        
         //keep the rawText up to date!
-        pad.setRawText(contentPlacer.textContent);
+        let editing = document.getElementsByClassName('editing')[0];
+
+        if (editing) {
+            pad.setRawText(editing.textContent);
+            console.log(editing);
+        } //else: text was already in view mode!
 
         const lines =  pad.getRawText().split('\n');
         lines.forEach(line => {

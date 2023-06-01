@@ -33,10 +33,9 @@ function render() {
         //keep the rawText up to date!
         let editing = document.querySelector('.editing');
 
-        if (editing) {
-            pad.setRawText(editing.textContent);
-            console.log(editing);
-        } //else: text was already in view mode!
+        if (editing) pad.setRawText(editing.textContent);
+        //else: text was already in view mode!
+        //so no needs to sync again
 
         const lines =  pad.getRawText().split('\n');
         lines.forEach(line => {
@@ -68,9 +67,7 @@ function closeApp() {
 
 //html button
 function saveFile() {
-    let fileContent = contentPlacer.textContent;
-
-    window.App.saveFile(pad.filePath, fileContent);
+    window.App.saveFile(pad.filePath, pad.getRawText());
 }
 
 //prevent default drag over effects

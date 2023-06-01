@@ -33,10 +33,9 @@ function render() {
         
         //keep the rawText up to date!
         let editing = document.querySelector('.editing');
-
         if (editing) pad._rawText = editing.textContent;
         //else: text was already in view mode!
-        //so no needs to sync again
+        //so no needs to sync
 
         const lines =  pad.getRawText().split('\n');
         lines.forEach(line => {
@@ -58,6 +57,8 @@ function render() {
     }
 
     contentPlacer.replaceWith(displayContent);
+    //I need to sync again beucause the object has changed!
+    //If I used a getter to store the content-placer I wouldn't need this
     contentPlacer = document.getElementById('content-placer');
 }
 

@@ -1,9 +1,12 @@
-let contentPlacer = document.querySelector("#content-placer");
-
 const pad = {
     filePath: "",
-    _rawText: "",
     editMode: true,
+    _rawText: "",
+    _contentPlacer: null,
+
+    getContentPlacer: () => {
+        return this._contentPlacer || document.querySelector("#content-placer");
+    },
 
     getRawText: () => {
         return pad._rawText
@@ -56,10 +59,7 @@ function render() {
         document.getElementById('buttonView').className = "boldButton";
     }
 
-    contentPlacer.replaceWith(displayContent);
-    //I need to sync again beucause the object has changed!
-    //If I used a getter to store the content-placer I wouldn't need this
-    contentPlacer = document.getElementById('content-placer');
+    pad.getContentPlacer().replaceWith(displayContent);
 }
 
 //html button

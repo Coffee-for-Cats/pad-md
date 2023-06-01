@@ -61,10 +61,10 @@ button {
     margin: .4rem;
 }
 
-.activeBoldButton {
+.boldButton {
     font-weight: bold;
 }
 
-.deactiveBoldButton {
+.nonBoldButton {
     font-weight: normal;
 }

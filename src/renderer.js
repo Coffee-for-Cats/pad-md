@@ -25,8 +25,8 @@ function render() {
         displayContent.textContent = pad.getRawText();
         displayContent.className += 'editing';
 
-        document.getElementById('buttonEdit').className = "activeBoldButton";
-        document.getElementById('buttonView').className = "deactiveBoldButton";
+        document.getElementById('buttonEdit').className = "nonBoldButton";
+        document.getElementById('buttonView').className = "boldButton";
 
     // if I am entering the view mode
     } else if (pad.editMode == false) {
@@ -53,8 +53,8 @@ function render() {
             }
         })
 
-        document.getElementById('buttonEdit').className = "deactiveBoldButton";
-        document.getElementById('buttonView').className = "activeBoldButton";
+        document.getElementById('buttonEdit').className = "boldButton";
+        document.getElementById('buttonView').className = "nonBoldButton";
     }
 
     contentPlacer.replaceWith(displayContent);

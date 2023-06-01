@@ -11,6 +11,7 @@ const pad = {
 
     setRawText: (rawText) => {
         pad._rawText = rawText;
+        render();
     }
 }
 
@@ -33,7 +34,7 @@ function render() {
         //keep the rawText up to date!
         let editing = document.querySelector('.editing');
 
-        if (editing) pad.setRawText(editing.textContent);
+        if (editing) pad._rawText = editing.textContent;
         //else: text was already in view mode!
         //so no needs to sync again
 
@@ -82,7 +83,6 @@ document.addEventListener('drop', async function openFile(e) {
     const fileContent = await window.App.openFile(pad.filePath);
     
     pad.setRawText(fileContent);
-    render();
 })
 
 //html buttons

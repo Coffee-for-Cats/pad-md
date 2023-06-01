@@ -1,6 +1,5 @@
 const pad = {
     filePath: "",
-    //editMode: true,
     _rawText: "",
     _contentPlacer: null,
 
@@ -14,7 +13,6 @@ const pad = {
 
     setRawText: (rawText) => {
         pad._rawText = rawText;
-        render();
     }
 }
 
@@ -26,7 +24,6 @@ function render(editMode = 'view') {
     if (editMode == 'edit') {
         displayContent.contentEditable = "plaintext-only";
         displayContent.textContent = pad.getRawText();
-        displayContent.className += 'editing';
 
         document.getElementById('buttonEdit').className = "boldButton";
         document.getElementById('buttonView').className = "nonBoldButton";
@@ -34,13 +31,7 @@ function render(editMode = 'view') {
     // if I am entering the view mode
     } else if (editMode == 'view') {
         
-        //keep the rawText up to date!
-        let editing = document.querySelector('.editing');
-        if (editing) pad._rawText = editing.textContent;
-        //else: text was already in view mode!
-        //so no needs to sync
-
-        const lines =  pad.getRawText().split('\n');
+        const lines = pad.getRawText().split('\n');
         lines.forEach(line => {
             //the type of the block is defined by the first char in the line.
             const blockType = line[0];
@@ -84,4 +75,9 @@ document.addEventListener('drop', async function openFile(e) {
     const fileContent = await window.App.openFile(pad.filePath);
     
     pad.setRawText(fileContent);
+    render();
+})
+
+document.addEventListener('input', function update(e) {
+    pad.setRawText(pad.getContentPlacer().textContent);
 })

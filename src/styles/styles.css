@@ -22,12 +22,14 @@ main {
     overflow-y: scroll;
 }
 
-pre {
+#content-placer {
     max-width: 100vw;
     min-height: 80vh;
     padding: 1.2rem;
     outline: none;
+}
 
+pre {
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }

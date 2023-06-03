@@ -16,6 +16,19 @@ const pad = {
     }
 }
 
+let editorMode = 'view'
+function switchMode() {
+    if (editorMode == 'view') {
+        render('view')
+        editorMode = 'edit'
+        document.getElementById('buttonSwitchMode').textContent = '✏️ edit'
+    } else {
+        render('edit')
+        editorMode = 'view'
+        document.getElementById('buttonSwitchMode').textContent = '📄 view'
+    }
+}
+
 function render(editMode = 'view') {
     
     let displayContent = document.createElement('pre');
@@ -76,16 +89,3 @@ document.addEventListener('drop', async function openFile(e) {
 document.addEventListener('input', (_e) => {
     pad.setRawText(pad.getContentPlacer().textContent);
 })
-
-let editorMode = 'view'
-function switchMode() {
-    if (editorMode == 'view') {
-        render('view')
-        editorMode = 'edit'
-        document.getElementById('buttonSwitchMode').textContent = '✏️ edit'
-    } else {
-        render('edit')
-        editorMode = 'view'
-        document.getElementById('buttonSwitchMode').textContent = '📄 view'
-    }
-}

@@ -62,11 +62,3 @@ button {
     padding: .2rem;
     margin: .4rem;
 }
-
-.boldButton {
-    font-weight: bold;
-}
-
-.nonBoldButton {
-    font-weight: normal;
-}

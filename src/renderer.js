@@ -24,10 +24,6 @@ function render(editMode = 'view') {
     if (editMode == 'edit') {
         displayContent.contentEditable = "plaintext-only";
         displayContent.textContent = pad.getRawText();
-
-        document.getElementById('buttonEdit').className = "boldButton";
-        document.getElementById('buttonView').className = "nonBoldButton";
-
     // if I am entering the view mode
     } else if (editMode == 'view') {
         
@@ -47,9 +43,6 @@ function render(editMode = 'view') {
                 displayContent.appendChild(p);
             }
         })
-
-        document.getElementById('buttonEdit').className = "nonBoldButton";
-        document.getElementById('buttonView').className = "boldButton";
     }
 
     pad.getContentPlacer().replaceWith(displayContent);
@@ -80,6 +73,19 @@ document.addEventListener('drop', async function openFile(e) {
     render();
 })
 
-document.addEventListener('input', function update(e) {
+document.addEventListener('input', (_e) => {
     pad.setRawText(pad.getContentPlacer().textContent);
 })
+
+let editorMode = 'view'
+function switchMode() {
+    if (editorMode == 'view') {
+        render('view')
+        editorMode = 'edit'
+        document.getElementById('buttonSwitchMode').textContent = '✏️ edit'
+    } else {
+        render('edit')
+        editorMode = 'view'
+        document.getElementById('buttonSwitchMode').textContent = '📄 view'
+    }
+}

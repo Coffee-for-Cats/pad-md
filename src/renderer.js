@@ -33,12 +33,14 @@ function render(editMode = 'view') {
         
         const lines = pad.getRawText().split('\n');
         lines.forEach(line => {
-            //the type of the block is defined by the first char in the line.
-            const blockType = line[0];
+            //the type of the block is defined by the first "word" in the line.
+            const blockType = line.split(' ')[0];
 
             if (Object.keys(blockElements).includes(blockType)) {
-                //if the type exists, call the function from md-elements.
-                displayContent.appendChild(blockElements[blockType](line))
+                //from md-elements.js
+                let formater = blockElements[blockType];
+                let formated = formater(line);
+                displayContent.appendChild(formated);
             } else {
                 const p = document.createElement('p');
                 p.textContent = line;

@@ -5,5 +5,15 @@ const blockElements = {
         const heading = document.createElement('h1');
         heading.textContent = line.slice(1).trim();
         return heading
+    },
+    '##': (line) => {
+        const heading = document.createElement('h2');
+        heading.textContent = line.slice(1).trim();
+        return heading
+    },
+    '###': (line) => {
+        const heading = document.createElement('h3');
+        heading.textContent = line.slice(1).trim();
+        return heading
     }
 }

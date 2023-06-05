@@ -15,5 +15,10 @@ const blockElements = {
         const heading = document.createElement('h3');
         heading.textContent = line.slice(3).trim();
         return heading
+    },
+    '-': (line) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = line.slice(1).trim();
+        return listItem;
     }
 }

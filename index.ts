@@ -3,7 +3,11 @@ const path = require('path');
 const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const fs = require('fs/promises');
 
-//Menu.setApplicationMenu(null)
+//problably makes the app smaller and lighter, no devtools or debug info!
+Menu.setApplicationMenu(null)
+
+//prevents build startup
+if (require('electron-squirrel-startup')) app.quit();
 
 function createWindow() {
     const win = new BrowserWindow({

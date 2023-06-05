@@ -1,7 +1,7 @@
 {
   "name": "pad-md",
-  "version": "1.0.0",
-  "description": "Meu aplicativo de notas para área de trabalho, escrito em JS, com electron.",
+  "version": "2.0.0",
+  "description": "Um aplicativo de bloco de notas e Markdown para desktop. Feito com <3 por Lucas Schwalm Silva",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

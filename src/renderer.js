@@ -56,28 +56,6 @@ function render(editMode) {
     pad.getContentPlacer().replaceWith(displayContent);
 }
 
-//html button
-function closeApp() {
-    window.App.closeApp();
-}
-
-//html button
-function saveFile() {
-    window.App.saveFile(pad.filePath, pad.getRawText());
-}
-
-//prevent default drag over effects
-document.addEventListener('dragover', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-})
-
-//open a file when drag to screen
-document.addEventListener('drop', (e) => {
-    const filePath = e.dataTransfer.files[0].path;
-    openFile(filePath);
-})
-
 async function openFileDialog() {
     const newPath = await window.App.openFileDialog();
     openFile(newPath)
@@ -95,7 +73,29 @@ async function openFile(filePath) {
     document.getElementById('button-save').hidden = false;
 }
 
+//html button
+function closeApp() {
+    window.App.closeApp();
+}
+
+//html button
+function saveFile() {
+    window.App.saveFile(pad.filePath, pad.getRawText());
+}
+
 //auto update rawText
 document.addEventListener('input', (_e) => {
     pad.setRawText(pad.getContentPlacer().textContent);
+})
+
+//prevent default drag over effects
+document.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+})
+
+//open a file when drag to screen
+document.addEventListener('drop', (e) => {
+    const filePath = e.dataTransfer.files[0].path;
+    openFile(filePath);
 })

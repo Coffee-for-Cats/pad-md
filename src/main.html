@@ -11,11 +11,12 @@
 </head>
 <body>
     <header class="title-bar">
-        <button type="button" class="button-save" onclick="saveFile()">save</button>
+        <button type="button" hidden id="button-save" onclick="saveFile()">💾 save</button>
+        <button type="button" id="button-open" onclick="openFileDialog()">📂 open</button>
         <span class="closer">
-            <button type="button" id="buttonSwitchMode" onclick="switchMode()">✏️ edit</button>
+            <button type="button" id="button-switchMode" onclick="switchMode()">📄 view</button>
         </span>
-        <button type="button" class="button-close" onclick="closeApp()">x</button>
+        <button type="button" id="button-close" onclick="closeApp()">x</button>
     </header>
     <main>
         <div id="content-placer">

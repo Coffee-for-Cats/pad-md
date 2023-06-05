@@ -8,12 +8,12 @@ const blockElements = {
     },
     '##': (line) => {
         const heading = document.createElement('h2');
-        heading.textContent = line.slice(1).trim();
+        heading.textContent = line.slice(2).trim();
         return heading
     },
     '###': (line) => {
         const heading = document.createElement('h3');
-        heading.textContent = line.slice(1).trim();
+        heading.textContent = line.slice(3).trim();
         return heading
     }
 }

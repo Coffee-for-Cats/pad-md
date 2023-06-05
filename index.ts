@@ -24,6 +24,7 @@ app.on("ready", () => {
     createWindow()
     ipcMain.on('closeApp', closeAppHandler)
     ipcMain.handle('openFile', openFileHandler)
+    ipcMain.handle('openFileDialog', openFileDialogHandler)
     ipcMain.handle('saveFile', saveFileHandler)
 
     macOpenAgain()
@@ -33,6 +34,11 @@ function closeAppHandler() {
     app.exit();
 }
 
+async function openFileDialogHandler(e: any) {
+    const paths = await dialog.showOpenDialog({ properties: ['openFile'] })
+    return paths.filePaths[0]
+}
+
 async function openFileHandler(e: any, filePath: string) {
     const data = await fs.readFile(filePath, 'utf8')
 
@@ -40,7 +46,9 @@ async function openFileHandler(e: any, filePath: string) {
 }
 
 async function saveFileHandler(_e: any, filePath: string, fileContent: string) {
-    fs.writeFile(filePath, fileContent);
+    if (filePath) {
+        fs.writeFile(filePath, fileContent);
+    }
 }
 
 //macOS

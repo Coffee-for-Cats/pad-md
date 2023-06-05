@@ -23,7 +23,8 @@ main {
 }
 
 #content-placer {
-    max-width: 100vw;
+    max-width: min(100vw, 30rem);
+    margin: 0 auto;
     min-height: 80vh;
     padding: 1.2rem;
     outline: none;
@@ -41,7 +42,6 @@ pre {
     width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     user-select: none;
     -webkit-user-select: none;
@@ -56,9 +56,20 @@ pre {
 button {
     cursor: pointer;
     color: inherit;
-    border: none;
     background: none;
+    border: none;
 
     padding: .2rem;
     margin: .4rem;
+}
+
+#button-switchMode {
+    padding: .2rem;
+    border: 1px solid;
+    border-radius: .2rem;
+}
+
+#button-close {
+    padding: .15rem;
+    margin-left: auto;
 }

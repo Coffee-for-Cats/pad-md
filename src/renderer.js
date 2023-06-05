@@ -2,43 +2,38 @@ const pad = {
     filePath: "",
     _rawText: "",
     _contentPlacer: null,
+    editorMode: "edit",
 
     getContentPlacer: () => {
         return this._contentPlacer || document.querySelector("#content-placer");
     },
-
-    getRawText: () => {
-        return pad._rawText
-    },
-
-    setRawText: (rawText) => {
-        pad._rawText = rawText;
-    }
+    getRawText: () => pad._rawText,
+    setRawText: (rawText) => pad._rawText = rawText,
 }
 
-let editorMode = 'view'
 function switchMode() {
-    if (editorMode == 'view') {
-        render('view')
-        editorMode = 'edit'
-        document.getElementById('buttonSwitchMode').textContent = '✏️ edit'
-    } else {
+    if (pad.editorMode == 'view') {
+        //the text says "edit" and you will want to edit the file
         render('edit')
-        editorMode = 'view'
-        document.getElementById('buttonSwitchMode').textContent = '📄 view'
+        document.getElementById('button-switchMode').textContent = '📄 view'
+    } else if (pad.editorMode == "edit") {
+        //the text says "view" and you will want to view the md.
+        render('view')
+        document.getElementById('button-switchMode').textContent = '✏️ edit'
     }
 }
 
-function render(editMode = 'view') {
+function render(editMode) {
+    if (editMode) { pad.editorMode = editMode }
     
     let displayContent = document.createElement('pre');
     displayContent.id = "content-placer";
 
-    if (editMode == 'edit') {
+    if (pad.editorMode == 'edit') {
         displayContent.contentEditable = "plaintext-only";
         displayContent.textContent = pad.getRawText();
     // if I am entering the view mode
-    } else if (editMode == 'view') {
+    } else if (pad.editorMode == 'view') {
         
         const lines = pad.getRawText().split('\n');
         lines.forEach(line => {
@@ -78,14 +73,29 @@ document.addEventListener('dragover', (event) => {
 })
 
 //open a file when drag to screen
-document.addEventListener('drop', async function openFile(e) {
-    pad.filePath = e.dataTransfer.files[0].path;
-    const fileContent = await window.App.openFile(pad.filePath);
-    
-    pad.setRawText(fileContent);
-    render();
+document.addEventListener('drop', (e) => {
+    const filePath = e.dataTransfer.files[0].path;
+    openFile(filePath);
 })
 
+async function openFileDialog() {
+    const newPath = await window.App.openFileDialog();
+    openFile(newPath)
+}
+
+async function openFile(filePath) {
+    if (filePath) pad.filePath = filePath;
+    const fileContent = await window.App.openFile(pad.filePath);
+
+    pad.setRawText(fileContent);
+    render();
+
+    //remove open-file button
+    document.getElementById('button-open').hidden = true;
+    document.getElementById('button-save').hidden = false;
+}
+
+//auto update rawText
 document.addEventListener('input', (_e) => {
     pad.setRawText(pad.getContentPlacer().textContent);
 })

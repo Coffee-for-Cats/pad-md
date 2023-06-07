@@ -75,12 +75,16 @@ async function openFile(filePath) {
 
 //html button
 function closeApp() {
-    window.App.closeApp();
+    window.close();
 }
 
 //html button
 function saveFile() {
     window.App.saveFile(pad.filePath, pad.getRawText());
+}
+
+function newPage() {
+    window.App.newPage();
 }
 
 //auto update rawText

@@ -1,10 +1,15 @@
+:root {
+    --color-white: #ccf;
+    --color-black: #151515;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 
     font-family: 'Segoe UI', Verdana, sans-serif;
-    color: #ccc;
+    color: var(--color-white);
 }
 
 body {
@@ -16,7 +21,7 @@ body {
 }
 
 main {
-    background-color: #151515;
+    background-color: var(--color-black);
     width: 100vw;
     height: 100vh;
     overflow-y: scroll;
@@ -36,10 +41,9 @@ pre {
 }
 
 .title-bar {
-    background-color: #bbe;
+    background-color: var(--color-white);
     color: black;
-    height: 2rem;
-    width: 100vw;
+    height: 2rem; width: 100vw;
     display: flex;
     align-items: center;
 
@@ -49,11 +53,13 @@ pre {
 }
 
 .title-bar>* {
+    font-family: 'Consolas';
     -webkit-app-region: no-drag;
     color: inherit;
 }
 
 button {
+    font-family: 'Consolas';
     cursor: pointer;
     color: inherit;
     background: none;
@@ -72,4 +78,27 @@ button {
 #button-close {
     padding: .25rem;
     margin-left: auto;
+}
+
+#button-newPage {
+    display: flex; align-items: center; justify-content: center;
+    width: 2rem; height: 2rem;
+    right: .3rem; bottom: 0;
+    font-size: 1.4rem;
+    position: fixed;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-radius: 50%;
+    
+    margin: 1.2rem;
+    margin-bottom: -2.1rem;
+
+    opacity: 0;
+    transition: .2s;
+}
+
+body:hover > #button-newPage {
+    margin-bottom: 1.2rem;
+    opacity: 1;
+    transition: .1s;
 }

@@ -4,7 +4,7 @@ const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const fs = require('fs/promises');
 
 //problably makes the app smaller and lighter, no devtools or debug info!
-Menu.setApplicationMenu(null)
+//Menu.setApplicationMenu(null)
 
 //prevents build startup
 if (require('electron-squirrel-startup')) app.quit();
@@ -26,17 +26,13 @@ function createWindow() {
 
 app.on("ready", () => {
     createWindow()
-    ipcMain.on('closeApp', closeAppHandler)
     ipcMain.handle('openFile', openFileHandler)
     ipcMain.handle('openFileDialog', openFileDialogHandler)
     ipcMain.handle('saveFile', saveFileHandler)
+    ipcMain.handle('newPage', createWindow)
 
     macOpenAgain()
 })
-
-function closeAppHandler() {
-    app.exit();
-}
 
 async function openFileDialogHandler(e: any) {
     const paths = await dialog.showOpenDialog({ properties: ['openFile'] })

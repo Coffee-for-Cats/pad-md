@@ -8,7 +8,7 @@
     margin: 0;
     box-sizing: border-box;
 
-    font-family: 'Segoe UI', Verdana, sans-serif;
+    font-family: 'Helvetica', Verdana, sans-serif;
     color: var(--color-white);
 }
 
@@ -53,13 +53,11 @@ pre {
 }
 
 .title-bar>* {
-    font-family: 'Consolas';
     -webkit-app-region: no-drag;
     color: inherit;
 }
 
 button {
-    font-family: 'Consolas';
     cursor: pointer;
     color: inherit;
     background: none;
@@ -81,11 +79,14 @@ button {
 }
 
 #button-newPage {
-    display: flex; align-items: center; justify-content: center;
     width: 2rem; height: 2rem;
     right: .3rem; bottom: 0;
-    font-size: 1.4rem;
     position: fixed;
+    
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Consolas';
+    font-size: 1.4rem;
+    
     background-color: var(--color-white);
     color: var(--color-black);
     border-radius: 50%;

@@ -60,7 +60,12 @@ async function saveFileHandler(_e: any, filePath: string, fileContent: string) {
 
 async function pinWindowHandler(e: any) {
     const id = e.sender.id;
-    openWindows[id].setAlwaysOnTop(true)
+    const win = openWindows[id]
+    if (win.isAlwaysOnTop()) {
+        win.setAlwaysOnTop(false)
+    } else {
+        win.setAlwaysOnTop(true)
+    }
 }
 
 //macOS

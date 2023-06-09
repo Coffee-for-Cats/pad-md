@@ -83,8 +83,13 @@ function saveFile() {
     window.App.saveFile(pad.filePath, pad.getRawText());
 }
 
+//TOOLBAR
 function newPage() {
     window.App.newPage();
+}
+
+function pinWindow() {
+    window.App.pinWindow();
 }
 
 //auto update rawText

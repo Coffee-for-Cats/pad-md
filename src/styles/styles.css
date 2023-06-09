@@ -38,6 +38,7 @@ main {
 pre {
     overflow-wrap: break-word;
     white-space: pre-wrap;
+    padding-bottom: 4rem;
 }
 
 .title-bar {
@@ -78,28 +79,29 @@ button {
     margin-left: auto;
 }
 
-#button-newPage {
-    width: 2rem; height: 2rem;
-    right: .3rem; bottom: 0;
+#toolbar {
     position: fixed;
-    
+    right: 0; bottom: 0;
+    margin: .8rem 1.4rem;
+    padding: .04rem;
+    transition: .2s;
+    opacity: .6;
+}
+#toolbar:hover {
+    opacity: 1;
+    transition: .1s;
+}
+
+#toolbar > button {
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Consolas';
-    font-size: 1.4rem;
     
+    width: 1.6rem; height: 1.6rem;
+    font-size: 1rem;
     background-color: var(--color-white);
     color: var(--color-black);
     border-radius: 50%;
-    
-    margin: 1.2rem;
-    margin-bottom: -2.1rem;
-
-    opacity: 0;
-    transition: .2s;
 }
 
-body:hover > #button-newPage {
-    margin-bottom: 1.2rem;
-    opacity: 1;
-    transition: .1s;
+#button-newPage {
+    font-family: 'Consolas';
 }

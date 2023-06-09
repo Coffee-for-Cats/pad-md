@@ -6,5 +6,6 @@ contextBridge.exposeInMainWorld('App', {
     },
     openFile: (filePath: string) => { return ipcRenderer.invoke('openFile', filePath) },
     openFileDialog: () => { return ipcRenderer.invoke('openFileDialog') },
-    newPage: () => ipcRenderer.invoke('newPage')
+    newPage: () => ipcRenderer.invoke('newPage'),
+    pinWindow: () => ipcRenderer.invoke('pinWindow'),
 })

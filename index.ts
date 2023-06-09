@@ -3,6 +3,8 @@ const path = require('path');
 const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const fs = require('fs/promises');
 
+const openWindows:any = [];
+
 //problably makes the app smaller and lighter, no devtools or debug info!
 //Menu.setApplicationMenu(null)
 
@@ -22,6 +24,10 @@ function createWindow() {
     })
 
     win.loadFile(path.join(__dirname, "../src/main.html"));
+
+    const id = win.webContents.id;
+    openWindows[id] = win;
+    console.log(id)
 }
 
 app.on("ready", () => {
@@ -30,6 +36,7 @@ app.on("ready", () => {
     ipcMain.handle('openFileDialog', openFileDialogHandler)
     ipcMain.handle('saveFile', saveFileHandler)
     ipcMain.handle('newPage', createWindow)
+    ipcMain.handle('pinWindow', pinWindowHandler)
 
     macOpenAgain()
 })
@@ -49,6 +56,11 @@ async function saveFileHandler(_e: any, filePath: string, fileContent: string) {
     if (filePath) {
         fs.writeFile(filePath, fileContent);
     }
+}
+
+async function pinWindowHandler(e: any) {
+    const id = e.sender.id;
+    openWindows[id].setAlwaysOnTop(true)
 }
 
 //macOS

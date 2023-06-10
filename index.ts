@@ -27,7 +27,6 @@ function createWindow() {
 
     const id = win.webContents.id;
     openWindows[id] = win;
-    console.log(id)
 }
 
 app.on("ready", () => {
@@ -35,8 +34,8 @@ app.on("ready", () => {
     ipcMain.handle('openFile', openFileHandler)
     ipcMain.handle('openFileDialog', openFileDialogHandler)
     ipcMain.handle('saveFile', saveFileHandler)
-    ipcMain.handle('newPage', createWindow)
-    ipcMain.handle('pinWindow', pinWindowHandler)
+    ipcMain.on('newPage', createWindow)
+    ipcMain.on('pinWindow', pinWindowHandler)
 
     macOpenAgain()
 })
@@ -61,11 +60,9 @@ async function saveFileHandler(_e: any, filePath: string, fileContent: string) {
 async function pinWindowHandler(e: any) {
     const id = e.sender.id;
     const win = openWindows[id]
-    if (win.isAlwaysOnTop()) {
-        win.setAlwaysOnTop(false)
-    } else {
-        win.setAlwaysOnTop(true)
-    }
+
+    //switch "alwaysOnTop"
+    if (win.isAlwaysOnTop()) win.setAlwaysOnTop(false); else win.setAlwaysOnTop(true)
 }
 
 //macOS

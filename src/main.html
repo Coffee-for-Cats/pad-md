@@ -8,6 +8,10 @@
     
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/md-elements.css">
+
+    <!-- Pin Push icon -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <header class="title-bar">
@@ -32,7 +36,9 @@
     </main>
     <footer id="toolbar">
         <button type="button" id="button-newPage" onclick="newPage()">+</button>
-        <button type="button" id="button-pin" onclick="pinWindow()">📌</button>
+        <button type="button" id="button-pin" onclick="pinWindow()">
+            <img src="./imgs/pushpin.svg">
+        </button>
     </footer>
 </body>
 <script src="./renderer.js"></script>

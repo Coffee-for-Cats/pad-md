@@ -6,6 +6,7 @@ contextBridge.exposeInMainWorld('App', {
     },
     openFile: (filePath: string) => { return ipcRenderer.invoke('openFile', filePath) },
     openFileDialog: () => { return ipcRenderer.invoke('openFileDialog') },
-    newPage: () => ipcRenderer.invoke('newPage'),
-    pinWindow: () => ipcRenderer.invoke('pinWindow'),
+    //simpler messages that doesnt need to return nothing to the renderer process.
+    newPage: () => ipcRenderer.send('newPage'),
+    pinWindow: () => ipcRenderer.send('pinWindow'),
 })

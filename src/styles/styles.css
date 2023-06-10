@@ -100,8 +100,17 @@ button {
     background-color: var(--color-white);
     color: var(--color-black);
     border-radius: 50%;
+    
+    font-family: 'Consolas';
 }
 
-#button-newPage {
-    font-family: 'Consolas';
+#toolbar > button > img {
+    transform: rotate(45deg);
+    width: 1rem; height: 1rem;
+}
+
+.pinned {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border-bottom: var(--color-white) 1px solid;
 }

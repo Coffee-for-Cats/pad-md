@@ -3,12 +3,17 @@ const pad = {
     _rawText: "",
     _contentPlacer: null,
     editorMode: "edit",
+    pinned: false,
 
     getContentPlacer: () => {
         return this._contentPlacer || document.querySelector("#content-placer");
     },
     getRawText: () => pad._rawText,
     setRawText: (rawText) => pad._rawText = rawText,
+
+    switchAlwaysOnTop: () => {
+        if (pad.pinned) pad.pinned = false; else pad.pinned = true;
+    }
 }
 
 function switchMode() {
@@ -90,6 +95,10 @@ function newPage() {
 
 function pinWindow() {
     window.App.pinWindow();
+    pad.switchAlwaysOnTop();
+
+    const titleBar = document.querySelector('.title-bar')
+    if (pad.pinned) titleBar.classList.add('pinned'); else titleBar.classList.remove('pinned')
 }
 
 //auto update rawText

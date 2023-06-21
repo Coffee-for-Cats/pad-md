@@ -8,13 +8,16 @@
     
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/md-elements.css">
+    <link rel="stylesheet" href="./styles/icons.css">
 
     <!-- Pin Push icon -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Menu Hamburguer icon -->
 </head>
 <body>
     <header class="title-bar">
+        <button type="button" id="button-menu" onclick="openMenu()">
+            <img src="./styles/material-icons/menu.svg">
+        </button>
         <button type="button" id="button-save" onclick="saveFile()" hidden>💾 save</button>
         <button type="button" id="button-open" onclick="openFileDialog()">📂 open</button>
         <span class="closer">
@@ -37,7 +40,9 @@
     <footer id="toolbar">
         <button type="button" id="button-newPage" onclick="newPage()">+</button>
         <button type="button" id="button-pin" onclick="pinWindow()">
-            <img src="./imgs/pushpin.svg">
+            <!-- <span class="material-symbols-outlined">
+                push_pin
+            </span> -->
         </button>
     </footer>
 </body>

@@ -46,6 +46,7 @@ async function openFileDialogHandler(e: any) {
 }
 
 async function openFileHandler(e: any, filePath: string) {
+    if (!filePath) return ""
     const data = await fs.readFile(filePath, 'utf8')
 
     return data

@@ -41,7 +41,7 @@ pre {
     padding-bottom: 4rem;
 }
 
-.title-bar {
+#title-bar {
     background-color: var(--color-black);
     color: var(--color-white);
     border-bottom: var(--color-white) 1px solid;
@@ -59,10 +59,23 @@ pre {
     color: black;
 }
 
-.title-bar>* {
+#title-bar>* {
     -webkit-app-region: no-drag;
     color: inherit;
     margin: .4rem;
+}
+
+#menu {
+    flex-direction: column;
+    position: fixed;
+    
+    margin: 2.2rem 0 0 .4rem;
+    padding: .4rem;
+    background-color: var(--color-black);
+    border: var(--color-white) 1px solid;
+    border-radius: .3rem;
+
+    left: 0;
 }
 
 button {
@@ -72,12 +85,6 @@ button {
     border: none;
 
     padding: .2rem;
-}
-
-#button-switchMode {
-    padding: .2rem;
-    border: 1px solid;
-    border-radius: .2rem;
 }
 
 #button-close {

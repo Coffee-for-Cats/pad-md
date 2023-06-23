@@ -35,10 +35,16 @@ function pinWindow() {
 
 }
 
+function openMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.display = menu.style.display == 'none' ? 'flex' : 'none'
+}
+
 async function openFileButton() {
     const newPath = await window.App.openFileDialog();
     openFile(newPath)
 }
+
 
 //auto update rawText
 document.addEventListener('input', (_e) => {

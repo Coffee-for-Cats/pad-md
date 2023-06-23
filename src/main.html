@@ -15,27 +15,29 @@
     <script src="./scripts/renderer.js" defer></script><!-- needs to get objects from html -->
 </head>
 <body>
-    <header class="title-bar">
+    <header id="title-bar">
         <!-- Menu Button -->
         <button type="button" id="button-menu" onclick="openMenu()">
             <img id="menu-buttom-white" src="./imgs/material-icons/menu_white.svg">
             <img id="menu-buttom-black" src="./imgs/material-icons/menu_black.svg" hidden>
         </button>
-
-        <!-- Refac: Make them inside of the menu -->
-        <!-- Save Button -->
-        <button type="button" id="button-save" onclick="saveFile()">💾 save</button>
-        <!-- Open File Button -->
-        <button type="button" id="button-open" onclick="openFileButton()">📂 open</button>
         
-        <!-- Edit Button -->
+        <!-- Edit / View Button -->
         <button type="button" id="button-editMode" onclick="modeToEdit()">✏️ edit</button>
-        <!-- View Button -->
         <button type="button" id="button-viewMode" onclick="modeToView()" hidden>📄 view</button>
 
         <!-- Close Window Button -->
         <button type="button" id="button-close" onclick="window.close()">x</button>
     </header>
+
+    <!-- This is the only way I found to hide it completely -->
+    <div id="menu" style="display: none">
+        <!-- Refac: Make them inside of the menu -->
+        <!-- Save Button -->
+        <button type="button" id="button-save" onclick="saveFile()">💾 save</button>
+        <!-- Open File Button -->
+        <button type="button" id="button-open" onclick="openFileButton()">📂 open</button>
+    </div>
     <main>
         <div id="content-placer">
             <h1>Drag a file or Click Open</h1>

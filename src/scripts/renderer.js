@@ -1,18 +1,27 @@
-function switchMode() {
-    if (pad.editorMode == 'view') {
-        //the text says "edit" and you will want to edit the file
-        render('edit')
-        document.getElementById('button-switchMode').textContent = '📄 view'
-    } else if (pad.editorMode == "edit") {
-        //the text says "view" and you will want to view the md.
-        render('view')
-        document.getElementById('button-switchMode').textContent = '✏️ edit'
-    }
+function modeToEdit() {
+    pad.editorMode = 'edit';
+    render('edit');
+    //the button will be changed to 'view', because you're already editing it.
+    document.getElementById('button-editMode').hidden = true;
+    document.getElementById('button-viewMode').hidden = false;
+}
+
+function modeToView() {
+    pad.editorMode = 'view';
+    render('view');
+    //the button will be changed to 'edit', because you're already viewing it.
+    document.getElementById('button-editMode').hidden = false;
+    document.getElementById('button-viewMode').hidden = true;
 }
 
 function pinWindow() {
-    pad.switchAlwaysOnTop();
+    //actually pins the window
+    window.App.pinWindow()
+    
+    //inverts the tracking variable
+    pad.pinned = !pad.pinned
 
+    //do the appearance changes to the app.
     const titleBar = document.querySelector('.title-bar')
     if (pad.pinned) {
         titleBar.classList.add('pinned') //the title bar gets white
@@ -26,9 +35,14 @@ function pinWindow() {
 
 }
 
+async function openFileButton() {
+    const newPath = await window.App.openFileDialog();
+    openFile(newPath)
+}
+
 //auto update rawText
 document.addEventListener('input', (_e) => {
-    pad.setRawText(pad.getContentPlacer().textContent);
+    setRawText(getContentPlacer().textContent);
 })
 
 //prevent default drag over effects

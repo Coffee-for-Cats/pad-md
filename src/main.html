@@ -10,22 +10,31 @@
     <link rel="stylesheet" href="./styles/md-elements.css">
     <link rel="stylesheet" href="./styles/icons.css">
 
-    <script src="./scripts/renderer.js" defer></script>
     <script src="./scripts/functional.js" async></script>
-    <script src="./scripts/md-elements.js" defer></script>
+    <script src="./scripts/md-elements.js" async></script>
+    <script src="./scripts/renderer.js" defer></script><!-- needs to get objects from html -->
 </head>
 <body>
     <header class="title-bar">
+        <!-- Menu Button -->
         <button type="button" id="button-menu" onclick="openMenu()">
             <img id="menu-buttom-white" src="./imgs/material-icons/menu_white.svg">
             <img id="menu-buttom-black" src="./imgs/material-icons/menu_black.svg" hidden>
         </button>
-        <button type="button" id="button-save" onclick="saveFile()" hidden>💾 save</button>
-        <button type="button" id="button-open" onclick="openFileDialog()">📂 open</button>
-        <span class="closer">
-            <button type="button" id="button-switchMode" onclick="switchMode()">📄 view</button>
-        </span>
-        <button type="button" id="button-close" onclick="closeApp()">x</button>
+
+        <!-- Refac: Make them inside of the menu -->
+        <!-- Save Button -->
+        <button type="button" id="button-save" onclick="saveFile()">💾 save</button>
+        <!-- Open File Button -->
+        <button type="button" id="button-open" onclick="openFileButton()">📂 open</button>
+        
+        <!-- Edit Button -->
+        <button type="button" id="button-editMode" onclick="modeToEdit()">✏️ edit</button>
+        <!-- View Button -->
+        <button type="button" id="button-viewMode" onclick="modeToView()" hidden>📄 view</button>
+
+        <!-- Close Window Button -->
+        <button type="button" id="button-close" onclick="window.close()">x</button>
     </header>
     <main>
         <div id="content-placer">
@@ -40,7 +49,9 @@
         </div>
     </main>
     <footer id="toolbar">
-        <button type="button" id="button-newPage" onclick="newPage()">+</button>
+        <!-- New Page Button -->
+        <button type="button" id="button-newPage" onclick="window.App.newPage()">+</button>
+        <!-- Pin Window Button -->
         <button type="button" id="button-pin" onclick="pinWindow()">
             <img src="./imgs/material-icons/push_pin.svg">
         </button>

@@ -1,20 +1,22 @@
+//tracking state object
 const pad = {
     filePath: "",
     _rawText: "",
     _contentPlacer: null,
     editorMode: "edit",
     pinned: false,
+}
 
-    getContentPlacer: () => {
-        return this._contentPlacer || document.querySelector("#content-placer");
-    },
-    getRawText: () => pad._rawText,
-    setRawText: (rawText) => pad._rawText = rawText,
+function getContentPlacer() {
+    return pad._contentPlacer || document.getElementById("content-placer");
+}
 
-    switchAlwaysOnTop: () => {
-        window.App.pinWindow();
-        if (pad.pinned) pad.pinned = false; else pad.pinned = true;
-    }
+function getRawText() {
+    return pad._rawText
+}
+
+function setRawText(rawText) {
+    pad._rawText = rawText
 }
 
 function render(editMode) {
@@ -25,19 +27,16 @@ function render(editMode) {
 
     if (pad.editorMode == 'edit') {
         displayContent.contentEditable = "plaintext-only";
-        displayContent.textContent = pad.getRawText();
-        // if I am entering the view mode
-    } else if (pad.editorMode == 'view') {
+        displayContent.textContent = getRawText();
 
-        const lines = pad.getRawText().split('\n');
+    } else if (pad.editorMode == 'view') {
+        const lines = getRawText().split('\n');
         lines.forEach(line => {
             //the type of the block is defined by the first "word" in the line.
             const blockType = line.split(' ')[0];
-
+            //blockElements is from md-elements.js
             if (Object.keys(blockElements).includes(blockType)) {
-                //from md-elements.js
-                let formater = blockElements[blockType];
-                let formated = formater(line);
+                let formated = blockElements[blockType](line);
                 displayContent.appendChild(formated);
             } else {
                 const p = document.createElement('p');
@@ -47,43 +46,24 @@ function render(editMode) {
         })
     }
 
-    pad.getContentPlacer().replaceWith(displayContent);
-}
-
-async function openFileDialog() {
-    const newPath = await window.App.openFileDialog();
-    openFile(newPath)
+    getContentPlacer().replaceWith(displayContent);
 }
 
 async function openFile(filePath) {
     if (filePath) pad.filePath = filePath;
     const fileContent = await window.App.openFile(pad.filePath);
 
-    pad.setRawText(fileContent);
+    setRawText(fileContent);
     render();
-
-    //remove open-file button
-    document.getElementById('button-open').hidden = true;
-    document.getElementById('button-save').hidden = false;
 }
 
-//html button
-function closeApp() {
-    window.close();
-}
-
-//html button
 async function saveFile() {
     if (pad.filePath) {
-        window.App.saveFile(pad.filePath, pad.getRawText());
+        window.App.saveFile(pad.filePath, getRawText());
     } else {
         const newPath = await window.App.openFileDialog();
+        
         pad.filePath = newPath;
-
-        window.App.saveFile(pad.filePath, pad.getRawText());
+        window.App.saveFile(pad.filePath, getRawText());
     }
-}
-
-function newPage() {
-    window.App.newPage();
 }

@@ -73,8 +73,15 @@ function closeApp() {
 }
 
 //html button
-function saveFile() {
-    window.App.saveFile(pad.filePath, pad.getRawText());
+async function saveFile() {
+    if (pad.filePath) {
+        window.App.saveFile(pad.filePath, pad.getRawText());
+    } else {
+        const newPath = await window.App.openFileDialog();
+        pad.filePath = newPath;
+
+        window.App.saveFile(pad.filePath, pad.getRawText());
+    }
 }
 
 function newPage() {

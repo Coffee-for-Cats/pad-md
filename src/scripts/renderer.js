@@ -2,16 +2,14 @@ function modeToEdit() {
     pad.editorMode = 'edit';
     render('edit');
     //the button will be changed to 'view', because you're already editing it.
-    document.getElementById('button-editMode').hidden = true;
-    document.getElementById('button-viewMode').hidden = false;
+    switchObjVisibility('#switch-edit-view')
 }
 
 function modeToView() {
     pad.editorMode = 'view';
     render('view');
     //the button will be changed to 'edit', because you're already viewing it.
-    document.getElementById('button-editMode').hidden = false;
-    document.getElementById('button-viewMode').hidden = true;
+    switchObjVisibility('#switch-edit-view')
 }
 
 function pinWindow() {
@@ -22,15 +20,13 @@ function pinWindow() {
     pad.pinned = !pad.pinned
 
     //do the appearance changes to the app.
-    const titleBar = document.querySelector('.title-bar')
+    const titleBar = document.querySelector('#title-bar')
     if (pad.pinned) {
         titleBar.classList.add('pinned') //the title bar gets white
-        document.getElementById("menu-buttom-white").hidden = true;
-        document.getElementById("menu-buttom-black").hidden = false; //the buttom gets black
+        switchObjVisibility('#button-menu')
     } else {
         titleBar.classList.remove('pinned') //the title bar gets black
-        document.getElementById("menu-buttom-white").hidden = false; //the buttons gets white
-        document.getElementById("menu-buttom-black").hidden = true;
+        switchObjVisibility('#button-menu')
     }
 
 }

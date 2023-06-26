@@ -1,4 +1,4 @@
-//Ponto de entrada, aqui eu posso fazer as coisas do "backend", acessar o FS, mas não consigo acessar a DOOM.
+//App entry point. I can do backend things, but I do not have access to the doom.
 const path = require('path');
 const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const fs = require('fs/promises');

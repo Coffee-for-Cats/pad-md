@@ -12,19 +12,22 @@
 
     <script src="./scripts/functional.js" async></script>
     <script src="./scripts/md-elements.js" async></script>
+    <script src="./scripts/switch.js" async></script>
     <script src="./scripts/renderer.js" defer></script><!-- needs to get objects from html -->
 </head>
 <body>
     <header id="title-bar">
         <!-- Menu Button -->
-        <button type="button" id="button-menu" onclick="openMenu()">
-            <img id="menu-buttom-white" src="./imgs/material-icons/menu_white.svg">
-            <img id="menu-buttom-black" src="./imgs/material-icons/menu_black.svg" hidden>
+        <button type="button" id="button-menu" class="switch-div-1" onclick="openMenu()">
+            <img id="menu-buttom-white" src="./imgs/material-icons/menu_white.svg" class="switch-obj-1">
+            <img id="menu-buttom-black" src="./imgs/material-icons/menu_black.svg" class="switch-obj-2">
         </button>
         
         <!-- Edit / View Button -->
-        <button type="button" id="button-editMode" onclick="modeToEdit()">✏️ edit</button>
-        <button type="button" id="button-viewMode" onclick="modeToView()" hidden>📄 view</button>
+        <div id="switch-edit-view" class="switch-div-1">
+            <button type="button" id="button-editMode" onclick="modeToEdit()" class="switch-obj-1">✏️ edit</button>
+            <button type="button" id="button-viewMode" onclick="modeToView()" class="switch-obj-2">📄 view</button>
+        </div>
 
         <!-- Close Window Button -->
         <button type="button" id="button-close" onclick="window.close()">x</button>

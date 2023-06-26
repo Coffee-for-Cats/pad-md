@@ -54,7 +54,7 @@ pre {
     -webkit-user-select: none;
     -webkit-app-region: drag;
 }
-.pinned {
+#title-bar.pinned {
     background-color: var(--color-white);
     color: black;
 }
@@ -63,6 +63,13 @@ pre {
     -webkit-app-region: no-drag;
     color: inherit;
     margin: .4rem;
+}
+
+.switch-div-1>.switch-obj-2 {
+    display: none;
+}
+.switch-div-2>.switch-obj-1 {
+    display: none;
 }
 
 #menu {

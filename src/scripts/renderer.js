@@ -45,7 +45,6 @@ async function openFileButton() {
     openFile(newPath)
 }
 
-
 //auto update rawText
 document.addEventListener('input', (_e) => {
     setRawText(getContentPlacer().textContent);

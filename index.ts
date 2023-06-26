@@ -34,6 +34,7 @@ app.on("ready", () => {
     ipcMain.handle('openFile', openFileHandler)
     ipcMain.handle('openFileDialog', openFileDialogHandler)
     ipcMain.handle('saveFile', saveFileHandler)
+    ipcMain.handle('saveFileDialog', saveFileDialogHandler)
     ipcMain.on('newPage', createWindow)
     ipcMain.on('pinWindow', pinWindowHandler)
 
@@ -56,6 +57,15 @@ async function saveFileHandler(_e: any, filePath: string, fileContent: string) {
     if (filePath) {
         fs.writeFile(filePath, fileContent);
     }
+}
+
+async function saveFileDialogHandler(_e: any) {
+    const paths = await dialog.showSaveDialog({});
+    let filePath = paths.filePath
+    if (filePath && !path.extname(filePath)) {
+        filePath += '.md'
+    }
+    return filePath
 }
 
 async function pinWindowHandler(e: any) {

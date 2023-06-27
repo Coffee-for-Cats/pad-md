@@ -69,3 +69,17 @@ async function saveFile() {
         }
     }
 }
+
+function modeToEdit() {
+    pad.editorMode = 'edit';
+    render('edit');
+    //the button will be changed to 'view', because you're already editing it.
+    switchObjVisibility('#switch-edit-view')
+}
+
+function modeToView() {
+    pad.editorMode = 'view';
+    render('view');
+    //the button will be changed to 'edit', because you're already viewing it.
+    switchObjVisibility('#switch-edit-view')
+}

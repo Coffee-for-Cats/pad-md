@@ -3,6 +3,14 @@
     --color-black: #151513;
 }
 
+.switch-div-1>.switch-obj-2 {
+    display: none;
+}
+
+.switch-div-2>.switch-obj-1 {
+    display: none;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -65,13 +73,6 @@ pre {
     margin: .4rem;
 }
 
-.switch-div-1>.switch-obj-2 {
-    display: none;
-}
-.switch-div-2>.switch-obj-1 {
-    display: none;
-}
-
 #menu {
     flex-direction: column;
     position: fixed;
@@ -83,6 +84,7 @@ pre {
     border-radius: .3rem;
 
     left: 0;
+    display: none;
 }
 
 button {

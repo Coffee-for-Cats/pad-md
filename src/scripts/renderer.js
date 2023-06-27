@@ -1,17 +1,3 @@
-function modeToEdit() {
-    pad.editorMode = 'edit';
-    render('edit');
-    //the button will be changed to 'view', because you're already editing it.
-    switchObjVisibility('#switch-edit-view')
-}
-
-function modeToView() {
-    pad.editorMode = 'view';
-    render('view');
-    //the button will be changed to 'edit', because you're already viewing it.
-    switchObjVisibility('#switch-edit-view')
-}
-
 function pinWindow() {
     //actually pins the window
     window.App.pinWindow()
@@ -33,7 +19,10 @@ function pinWindow() {
 
 function openMenu() {
     const menu = document.getElementById('menu');
-    menu.style.display = menu.style.display == 'none' ? 'flex' : 'none'
+    console.log(menu.style.display);
+    menu.style.display = menu.style.display == 'none' || !menu.style.display ? 'flex' : 'none'
+    console.log(menu.style.display);
+
 }
 
 async function openFileButton() {

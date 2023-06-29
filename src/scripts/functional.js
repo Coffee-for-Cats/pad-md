@@ -3,7 +3,7 @@ const pad = {
     filePath: "",
     _rawText: "",
     _contentPlacer: null,
-    editorMode: "edit",
+    editorMode: "view",
     pinned: false,
 }
 
@@ -19,8 +19,9 @@ function setRawText(rawText) {
     pad._rawText = rawText
 }
 
-function render(editMode) {
-    if (editMode) { pad.editorMode = editMode }
+function render(editMode = pad.editorMode) {
+    // if the editMode is not default, than update the tracking variable.
+    pad.editorMode = editMode;
 
     let displayContent = document.createElement('pre');
     displayContent.id = "content-placer";

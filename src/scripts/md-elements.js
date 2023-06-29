@@ -31,7 +31,6 @@ function formatLine(line) {
     if (Object.keys(blockElements).includes(possibleBlockType)) {
         const cuttedParagraph = cuttedParagraphArray.slice(1).join(' ').trim()
         const formattedElement = blockElements[possibleBlockType](cuttedParagraph)
-        console.log(formattedElement)
         return formattedElement
     } else {
         const p = document.createElement('p');

@@ -32,17 +32,7 @@ function render(editMode) {
     } else if (pad.editorMode == 'view') {
         const lines = getRawText().split('\n');
         lines.forEach(line => {
-            //the type of the block is defined by the first "word" in the line.
-            const blockType = line.split(' ')[0];
-            //blockElements is from md-elements.js
-            if (Object.keys(blockElements).includes(blockType)) {
-                let formated = blockElements[blockType](line);
-                displayContent.appendChild(formated);
-            } else {
-                const p = document.createElement('p');
-                p.textContent = line;
-                displayContent.appendChild(p);
-            }
+            displayContent.appendChild(formatLine(line))
         })
     }
 

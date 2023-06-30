@@ -45,5 +45,4 @@ document.addEventListener('dragover', (event) => {
 document.addEventListener('drop', (e) => {
     const filePath = e.dataTransfer.files[0].path;
     openFile(filePath);
-    render();
 })

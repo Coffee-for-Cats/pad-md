@@ -33,7 +33,9 @@ function render(editMode = pad.editorMode) {
     } else if (pad.editorMode == 'view') {
         const lines = getRawText().split('\n');
         lines.forEach(line => {
-            displayContent.appendChild(formatLine(line))
+            displayContent.appendChild(
+                formatLine(line)
+            )
         })
     }
 

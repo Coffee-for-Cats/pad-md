@@ -42,26 +42,19 @@ function formatLine(line) {
 
 function formatInline(cuttedParagraph) {
     
-    const formattedParagraphElements = [];
-    const splitParagraph = cuttedParagraph.split('**')
-    const lenght = splitParagraph.length;
-
-    formattedParagraphElements.push(splitParagraph[0])
-    for (let i = 1; i < lenght; i += 2) {
-        const slice = splitParagraph[i]
-        const e = document.createElement('b')
-        e.textContent = slice;
-        formattedParagraphElements.push(e)
-        // end of bold element ('**bold text>>**<<')
-        // save the next text fragment
-        formattedParagraphElements.push(splitParagraph[i + 1])
-    }
-
     const formattedText = document.createElement('span');
-    for (let i = 0; i < formattedParagraphElements.length; i++) {
-        formattedText.append(
-            formattedParagraphElements[i]
-        )
+
+    const splitParagraph = cuttedParagraph.split('**')
+
+    formattedText.append(splitParagraph[0])
+    for (let i = 1; i < splitParagraph.length; i += 2) {
+        const e = document.createElement('b')
+        e.textContent = splitParagraph[i];
+        formattedText.append(e)
+        // end of bold element ('**bold text>>**<<')
+        // save the next text fragment too
+        formattedText.append(splitParagraph[i + 1])
+        // because we are doing 2 itens of the array at a time.
     }
 
     return formattedText

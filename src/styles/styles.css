@@ -19,6 +19,12 @@
     font-family: 'Helvetica', Verdana, sans-serif;
     color: var(--color-white);
 }
+b {
+    font-weight: 800;
+    padding: 0 .4rem; margin: 0 -.4rem;
+    background: rgba(200, 200, 200, .04);
+    border-radius: .5rem;
+}
 
 body {
     width: 100vw;

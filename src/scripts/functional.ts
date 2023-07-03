@@ -1,5 +1,14 @@
+interface Window {
+    App: any
+}
 //tracking state object
-const pad = {
+const pad: {
+    filePath: string,
+    _contentPlacer: HTMLElement,
+    _rawText: string,
+    editorMode: "view" | "edit",
+    pinned: boolean
+} = {
     filePath: "",
     _rawText: "",
     _contentPlacer: null,
@@ -15,7 +24,7 @@ function getRawText() {
     return pad._rawText
 }
 
-function setRawText(rawText) {
+function setRawText(rawText: string) {
     pad._rawText = rawText
 }
 
@@ -42,7 +51,7 @@ function render(editMode = pad.editorMode) {
     getContentPlacer().replaceWith(displayContent);
 }
 
-async function openFile(filePath) {
+async function openFile(filePath: string) {
     if (filePath) pad.filePath = filePath;
     const fileContent = await window.App.openFile(pad.filePath);
 

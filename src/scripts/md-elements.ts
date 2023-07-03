@@ -1,21 +1,21 @@
 const blockElements = {
     // starts with | function that returns an HTML element.
     //               the function argument is the parsed content.
-    '#': (text) => {
+    '#': (text: HTMLElement) => {
         return elemFromText('h1', text)
     },
-    '##': (text) => {
+    '##': (text: HTMLElement) => {
         return elemFromText('h2', text)
     },
-    '###': (text) => {
+    '###': (text: HTMLElement) => {
         return elemFromText('h3', text)
     },
-    '-': (text) => {
+    '-': (text: HTMLElement) => {
         return elemFromText('li', text)
     }
 }
 
-function formatLine(rawText) {
+function formatLine(rawText: string) {
     const wordArray = rawText.split(' ');
     // the type of the element is always defined as the first letters of the paragraph, followed by a space.
     const possibleBlockType = wordArray[0]
@@ -24,7 +24,9 @@ function formatLine(rawText) {
         const typelessParagraph = wordArray.slice(1).join(' ').trim()
         const formattedText = formatInline(typelessParagraph)
 
-        return blockElements[possibleBlockType](formattedText)
+        return blockElements[
+            possibleBlockType as keyof typeof blockElements
+        ](formattedText)
     } else {
         const p = document.createElement('p');
         p.append(formatInline(rawText));
@@ -32,7 +34,7 @@ function formatLine(rawText) {
     }
 }
 
-function formatInline(rawText) {
+function formatInline(rawText: string) {
     
     const formattedText = document.createElement('span');
     const splitParagraph = rawText.split('**')
@@ -53,8 +55,8 @@ function formatInline(rawText) {
     return formattedText
 }
 
-function elemFromText(type, text) {
+function elemFromText(type: string, text: HTMLElement) {
     const e = document.createElement(type);
-    e.textContent = text
+    e.append(text)
     return e
 }

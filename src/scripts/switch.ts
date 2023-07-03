@@ -1,4 +1,4 @@
-function switchObjVisibility(query) {
+function switchObjVisibility(query: string) {
     const classes = document.querySelector(query).classList;
     if (classes.contains('switch-div-1')) {
         classes.add('switch-div-2')

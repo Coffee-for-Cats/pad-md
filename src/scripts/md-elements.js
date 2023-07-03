@@ -2,24 +2,16 @@ const blockElements = {
     // starts with | function that returns an HTML element.
     //               the function argument is the parsed content.
     '#': (text) => {
-        const heading = document.createElement('h1');
-        heading.append(text)
-        return heading
+        return elemFromText('h1', text)
     },
     '##': (text) => {
-        const heading = document.createElement('h2');
-        heading.append(text)
-        return heading
+        return elemFromText('h2', text)
     },
     '###': (text) => {
-        const heading = document.createElement('h3');
-        heading.append(text)
-        return heading
+        return elemFromText('h3', text)
     },
     '-': (text) => {
-        const listItem = document.createElement('li');
-        listItem.append(text)
-        return listItem;
+        return elemFromText('li', text)
     }
 }
 
@@ -59,4 +51,10 @@ function formatInline(rawText) {
     }
 
     return formattedText
+}
+
+function elemFromText(type, text) {
+    const e = document.createElement(type);
+    e.textContent = text
+    return e
 }

@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w",
     "start": "tsc && electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"

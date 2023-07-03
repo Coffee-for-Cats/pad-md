@@ -1,59 +1,60 @@
 const blockElements = {
     // starts with | function that returns an HTML element.
-    //               the function argument is the rest of the content.
-    '#': (line) => {
+    //               the function argument is the parsed content.
+    '#': (text) => {
         const heading = document.createElement('h1');
-        heading.append(line)
+        heading.append(text)
         return heading
     },
-    '##': (line) => {
+    '##': (text) => {
         const heading = document.createElement('h2');
-        heading.append(line)
+        heading.append(text)
         return heading
     },
-    '###': (line) => {
+    '###': (text) => {
         const heading = document.createElement('h3');
-        heading.append(line)
+        heading.append(text)
         return heading
     },
-    '-': (line) => {
+    '-': (text) => {
         const listItem = document.createElement('li');
-        listItem.append(line)
+        listItem.append(text)
         return listItem;
     }
 }
 
-function formatLine(line) {
-    const cuttedParagraphArray = line.split(' ');
-    // the type of the element is allways defined as the first letters of the paragraph, followed by a space.
-    const possibleBlockType = cuttedParagraphArray[0]
+function formatLine(rawText) {
+    const wordArray = rawText.split(' ');
+    // the type of the element is always defined as the first letters of the paragraph, followed by a space.
+    const possibleBlockType = wordArray[0]
 
-    if (Object.keys(blockElements).includes(possibleBlockType)) {
-        const cuttedParagraph = cuttedParagraphArray.slice(1).join(' ').trim()
+    if (possibleBlockType in blockElements) {
+        const typelessParagraph = wordArray.slice(1).join(' ').trim()
+        const formattedText = formatInline(typelessParagraph)
 
-        const formattedText = formatInline(cuttedParagraph)
         return blockElements[possibleBlockType](formattedText)
     } else {
         const p = document.createElement('p');
-        p.append(formatInline(line));
+        p.append(formatInline(rawText));
         return p;
     }
 }
 
-function formatInline(cuttedParagraph) {
+function formatInline(rawText) {
     
     const formattedText = document.createElement('span');
+    const splitParagraph = rawText.split('**')
 
-    const splitParagraph = cuttedParagraph.split('**')
-
+    //saves the first "paragraph part" if it is not bold
     formattedText.append(splitParagraph[0])
+
     for (let i = 1; i < splitParagraph.length; i += 2) {
-        const e = document.createElement('b')
-        e.textContent = splitParagraph[i];
-        formattedText.append(e)
+        const b = document.createElement('b')
+        b.textContent = splitParagraph[i];
+        formattedText.append(b)
         // end of bold element ('**bold text>>**<<')
         // save the next text fragment too
-        formattedText.append(splitParagraph[i + 1])
+        if (splitParagraph[i + 1]) formattedText.append(splitParagraph[i + 1])
         // because we are doing 2 itens of the array at a time.
     }
 

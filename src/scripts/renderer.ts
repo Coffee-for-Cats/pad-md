@@ -30,6 +30,16 @@ async function openFileButton() {
     openFile(newPath)
 }
 
+function newFileButton() {
+    saveFile()
+
+    pad.filePath = ""
+    pad._rawText = ""
+    pad._contentPlacer = null
+    
+    render();
+}
+
 //auto update rawText
 document.addEventListener('input', (_e) => {
     setRawText(getContentPlacer().textContent);

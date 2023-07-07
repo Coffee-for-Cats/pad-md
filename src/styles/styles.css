@@ -81,6 +81,7 @@ pre {
 
 #menu {
     flex-direction: column;
+    align-items: flex-start;
     position: fixed;
     
     margin: 2.2rem 0 0 .4rem;
@@ -89,7 +90,7 @@ pre {
     border: var(--color-white) 1px solid;
     border-radius: .3rem;
 
-    left: 0;
+    left: 0; top: 0rem;
     display: none;
 }
 

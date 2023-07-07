@@ -64,7 +64,6 @@ async function saveFile() {
         window.App.saveFile(pad.filePath, getRawText());
     } else {
         const newPath = await window.App.saveFileDialog();
-        console.log(newPath);
         if (newPath) {
             pad.filePath = newPath;
             window.App.saveFile(pad.filePath, getRawText());

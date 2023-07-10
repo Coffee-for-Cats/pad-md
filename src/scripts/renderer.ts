@@ -40,6 +40,8 @@ function newFileButton() {
 //auto update rawText
 document.addEventListener('input', (_e) => {
     setRawText(getContentPlacer().textContent);
+    //autosync
+    docModified = true;
 })
 
 //prevent default drag over effects

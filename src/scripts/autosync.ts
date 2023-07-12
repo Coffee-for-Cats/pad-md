@@ -4,7 +4,7 @@ let docModified = false;
 
 window.setInterval(function syncStep() {
     if (docModified) {
-        //saveFile()
+        saveFile()
         console.log('changes saved!');
     }
 }, autosyncDelay)

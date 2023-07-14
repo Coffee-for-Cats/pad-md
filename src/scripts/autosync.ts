@@ -1,10 +1,10 @@
 const autosyncDelay = 1000;
-
 let docModified = false;
+window.setInterval(syncStep, autosyncDelay)
 
-window.setInterval(function syncStep() {
+function syncStep() {
     if (docModified) {
         saveFile()
         console.log('changes saved!');
     }
-}, autosyncDelay)
+}

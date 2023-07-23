@@ -41,8 +41,10 @@
         <!-- New Button -->
         <button type="button" id="button-new" onclick="newFileButton()">📄 new</button>
         <!-- Autosave switch -->
-        <input type="checkbox" name="autosync" id="autosync-switch">
-        <label for="autosync-switch">Autosync</label>
+        <div id="autosync-div">
+            <input type="checkbox" name="autosync" id="autosync-switch">
+            <label id="autosync-label" for="autosync-switch">autosync</label>
+        </div>
     </div>
     <main>
         <!-- The content of this div are replaced opening or editing files -->

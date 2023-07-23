@@ -103,6 +103,16 @@ button {
     padding: .2rem;
 }
 
+#autosync-div {
+    display: block;
+    padding: .2rem;
+    cursor: pointer;
+}
+
+input, label {
+    font-size: 13.33px;
+}
+
 #button-close {
     padding: .25rem;
     margin-left: auto;

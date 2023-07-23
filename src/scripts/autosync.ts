@@ -3,7 +3,7 @@ let docModified = false;
 window.setInterval(syncStep, autosyncDelay)
 
 function syncStep() {
-    if (docModified) {
+    if (docModified && pad.filePath) {
         saveFile()
         console.log('changes saved!');
     }

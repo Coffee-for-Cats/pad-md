@@ -60,6 +60,7 @@ async function openFile(filePath: string) {
 }
 
 async function saveFile() {
+    docModified = false;
     if (pad.filePath) {
         window.App.saveFile(pad.filePath, getRawText());
     } else {

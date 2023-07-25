@@ -104,7 +104,8 @@ button {
 }
 
 #autosync-div {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: .2rem;
     cursor: pointer;
 }

@@ -1,10 +1,11 @@
-const autosyncDelay = 1000;
 let docModified = false;
+
+const autosyncDelay = 1000;
 window.setInterval(syncStep, autosyncDelay)
 
 function syncStep() {
-    if (docModified && pad.filePath) {
+    if (switchCheckbox.checked && docModified && pad.filePath) {
         saveFile()
-        console.log('changes saved!');
     }
 }
+const switchCheckbox = <HTMLInputElement>document.getElementById('autosync-switch')

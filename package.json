@@ -1,6 +1,6 @@
 {
   "name": "pad-md",
-  "version": "0.4",
+  "version": "0.5",
   "description": "A markdown note-taking app. Made with <3 by Lucas Schwalm Silva",
   "main": "dist/index.js",
   "scripts": {

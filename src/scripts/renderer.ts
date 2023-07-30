@@ -57,7 +57,9 @@ function modeToView() {
 
 function openMenu() {
     const menu = document.getElementById('menu');
-    menu.style.display = menu.style.display == 'none' || !menu.style.display ? 'flex' : 'none'
+    menu.focus();
+    //alert(document.activeElement.id); 
+    //menu.style.display = menu.style.display == 'none' || !menu.style.display ? 'flex' : 'none'
 }
 
 async function openFileButton() {

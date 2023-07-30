@@ -85,13 +85,20 @@ pre {
     position: fixed;
     
     margin: 2.2rem 0 0 .4rem;
-    padding: .4rem;
+    /* padding: .4rem; */
     background-color: var(--color-black);
-    border: var(--color-white) 1px solid;
     border-radius: .3rem;
 
     left: 0; top: 0rem;
-    display: none;
+    display: flex;
+    
+    overflow: hidden;
+    width: 0; padding: 0;
+}
+
+#menu:focus-within {
+    width: auto; padding: .4rem;
+    border: var(--color-white) 1px solid;
 }
 
 button {

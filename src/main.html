@@ -23,6 +23,20 @@
             <img id="menu-buttom-white" src="./imgs/menu_white.svg" class="switch-obj-1">
             <img id="menu-buttom-black" src="./imgs/menu_black.svg" class="switch-obj-2">
         </button>
+
+        <div id="menu">
+            <!-- Save Button -->
+            <button type="button" id="button-save" onclick="saveFile()">💾 save</button>
+            <!-- Open File Button -->
+            <button type="button" id="button-open" onclick="openFileButton()">📂 open</button>
+            <!-- New Button -->
+            <button type="button" id="button-new" onclick="newFileButton()">📄 new</button>
+            <!-- Autosave switch -->
+            <div id="autosync-div">
+                <input type="checkbox" name="autosync" id="autosync-switch">
+                <label id="autosync-label" for="autosync-switch">&nbsp;autosave</label>
+            </div>
+        </div>
         
         <!-- Edit / View Button -->
         <div id="switch-edit-view" class="switch-div-1">
@@ -33,19 +47,6 @@
         <!-- Close Window Button -->
         <button type="button" id="button-close" onclick="syncStep(); window.close()">x</button>
     </header>
-    <div id="menu">
-        <!-- Save Button -->
-        <button type="button" id="button-save" onclick="saveFile()">💾 save</button>
-        <!-- Open File Button -->
-        <button type="button" id="button-open" onclick="openFileButton()">📂 open</button>
-        <!-- New Button -->
-        <button type="button" id="button-new" onclick="newFileButton()">📄 new</button>
-        <!-- Autosave switch -->
-        <div id="autosync-div">
-            <input type="checkbox" name="autosync" id="autosync-switch">
-            <label id="autosync-label" for="autosync-switch">&nbsp;autosave</label>
-        </div>
-    </div>
     <main>
         <!-- The content of this div are replaced opening or editing files -->
         <div id="content-placer">

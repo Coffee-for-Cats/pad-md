@@ -16,7 +16,7 @@
     margin: 0;
     box-sizing: border-box;
 
-    font-family: 'Helvetica', Verdana, sans-serif;
+    font-family: 'Consolas', monospace, sans-serif;
     color: var(--color-white);
 }
 b {

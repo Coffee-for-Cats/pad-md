@@ -44,12 +44,14 @@ main {
 #content-placer {
     max-width: min(100vw, 30rem);
     margin: 0 auto;
-    min-height: 80vh;
+    min-height: 98vh;
+    width: 100%;
+    background: var(--color-black);
     padding: 1.2rem;
-    outline: none;
+    border: none; outline: none;
 }
 
-pre {
+pre, textarea {
     overflow-wrap: break-word;
     white-space: pre-wrap;
     padding-bottom: 4rem;

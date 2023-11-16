@@ -4,7 +4,7 @@ interface Window {
 //tracking state object
 const pad: {
     filePath: string,
-    _contentPlacer: HTMLElement,
+    _contentPlacer: HTMLTextAreaElement,
     _rawText: string,
     editorMode: "view" | "edit",
     pinned: boolean
@@ -16,8 +16,8 @@ const pad: {
     pinned: false,
 }
 
-function getContentPlacer() {
-    return pad._contentPlacer || document.getElementById("content-placer");
+function getContentPlacer(): HTMLTextAreaElement {
+    return pad._contentPlacer || <HTMLTextAreaElement>document.getElementById("content-placer");
 }
 
 function getRawText() {

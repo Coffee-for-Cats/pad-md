@@ -3,6 +3,10 @@ p, li {
     line-height: 1.4;
 }
 
+li {
+    margin-left: 2rem;
+}
+
 h1, h2, h3, h4 {
     margin: .6rem 0 .3rem 0;
 }

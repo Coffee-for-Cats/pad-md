@@ -17,12 +17,16 @@ function pinWindow() {
 
 }
 
+declare class marked {
+    static parse(_: any): any;
+    parse: any;
+};
 
 function render(editMode = pad.editorMode) {
     // if the editMode is not default, than update the tracking variable.
     pad.editorMode = editMode;
 
-    let displayContent = document.createElement('pre');
+    let displayContent = document.createElement('textarea');
     displayContent.id = "content-placer";
 
     if (pad.editorMode == 'edit') {
@@ -30,12 +34,15 @@ function render(editMode = pad.editorMode) {
         displayContent.textContent = getRawText();
 
     } else if (pad.editorMode == 'view') {
-        const lines = getRawText().split('\n');
-        lines.forEach(line => {
-            displayContent.appendChild(
-                formatLine(line)
-            )
-        })
+        // const lines = getRawText().split('\n');
+        // lines.forEach(line => {
+        //     displayContent.appendChild(
+        //         formatLine(line)
+        //     )
+        // })
+
+        const content = marked.parse(getRawText());
+        displayContent.innerHTML = marked.parse(content);
     }
 
     getContentPlacer().replaceWith(displayContent);
@@ -78,10 +85,22 @@ function newFileButton() {
 }
 
 //auto update rawText
-document.addEventListener('input', (_e) => {
+document.addEventListener('input', (e: any) => {
     setRawText(getContentPlacer().textContent);
     //autosync
     docModified = true;
+})
+
+document.addEventListener('keydown', (e: any) => {
+    // console.log(e.keyCode);
+    if (e.keyCode == 9) {
+        e.preventDefault();
+        const start = getContentPlacer().selectionStart || 0;
+        const text = getContentPlacer().value;
+        getContentPlacer().value =
+            text.slice(0, start) + '    ' + text.slice(start);
+        getContentPlacer().setSelectionRange(start + 4, start + 4);
+    }
 })
 
 //prevent default drag over effects

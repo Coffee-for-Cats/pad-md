@@ -85,7 +85,7 @@ function newFileButton() {
 
 //auto update rawText
 document.addEventListener('input', (e: any) => {
-    setRawText(getContentPlacer().textContent);
+    setRawText(getContentPlacer().firstChild.textContent);
     //autosync
     docModified = true;
 })

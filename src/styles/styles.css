@@ -38,23 +38,26 @@ main {
     background-color: var(--color-black);
     width: 100vw;
     height: 100vh;
-    overflow-y: scroll;
+    height: min-content;
+    overflow-y: hidden;
 }
 
-#content-placer {
+#content-placer > * {
     max-width: min(100vw, 30rem);
+    min-height: 100vh;
     margin: 0 auto;
-    min-height: 98vh;
+    max-height: 98vh;
     width: 100%;
     background: var(--color-black);
     padding: 1.2rem;
     border: none; outline: none;
+    padding-bottom: 4rem;
+    overflow-y: scroll;
 }
 
-pre, textarea {
+textarea {
     overflow-wrap: break-word;
     white-space: pre-wrap;
-    padding-bottom: 4rem;
 }
 
 #title-bar {

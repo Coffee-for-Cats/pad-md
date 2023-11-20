@@ -23,26 +23,25 @@ declare class marked {
 };
 
 function render(editMode = pad.editorMode) {
-    // if the editMode is not default, than update the tracking variable.
+    console.log(getRawText())
+    // if the editMode is not default, update the tracking variable.
     pad.editorMode = editMode;
 
-    let displayContent = document.createElement('textarea');
+    let displayContent = document.createElement('div');
     displayContent.id = "content-placer";
-
+    
     if (pad.editorMode == 'edit') {
-        displayContent.contentEditable = "plaintext-only";
-        displayContent.textContent = getRawText();
+        const textarea = document.createElement('textarea');
+        textarea.contentEditable = "plaintext-only";
+        
+        textarea.value = getRawText();
+        displayContent.appendChild(textarea)
+
 
     } else if (pad.editorMode == 'view') {
-        // const lines = getRawText().split('\n');
-        // lines.forEach(line => {
-        //     displayContent.appendChild(
-        //         formatLine(line)
-        //     )
-        // })
-
-        const content = marked.parse(getRawText());
-        displayContent.innerHTML = marked.parse(content);
+        const content = document.createElement('div');
+        displayContent.appendChild(content);
+        content.innerHTML = marked.parse(getRawText());
     }
 
     getContentPlacer().replaceWith(displayContent);

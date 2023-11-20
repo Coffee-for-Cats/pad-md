@@ -23,7 +23,6 @@ declare class marked {
 };
 
 function render(editMode = pad.editorMode) {
-    console.log(getRawText())
     // if the editMode is not default, update the tracking variable.
     pad.editorMode = editMode;
 
@@ -85,13 +84,15 @@ function newFileButton() {
 
 //auto update rawText
 document.addEventListener('input', (e: any) => {
-    setRawText(getContentPlacer().firstChild.textContent);
+    const firstChild = <HTMLTextAreaElement>getContentPlacer().firstChild;
+    const content = firstChild.value || firstChild.textContent;
+    
+    setRawText(content);
     //autosync
     docModified = true;
 })
 
 document.addEventListener('keydown', (e: any) => {
-    // console.log(e.keyCode);
     if (e.keyCode == 9) {
         e.preventDefault();
         const start = getContentPlacer().selectionStart || 0;

@@ -39,7 +39,7 @@ main {
     width: 100vw;
     height: 100vh;
     height: min-content;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 #content-placer > * {
@@ -51,8 +51,8 @@ main {
     background: var(--color-black);
     padding: 1.2rem;
     border: none; outline: none;
-    padding-bottom: 4rem;
-    overflow-y: scroll;
+    padding-bottom: 2rem;
+    overflow-y: hidden;
 }
 
 textarea {
